@@ -1,7 +1,7 @@
 const expressConfigurator = require("./config/expressConfigurator")
 const express = require("express")
 const mongoose = require("mongoose")
-// const router = require('./controllers/paintingController')
+const router = require('./controllers/destinationController')
 const userRouter = require('./controllers/userController')
 const cors = require('cors')
 
@@ -16,7 +16,7 @@ app.use(bodyParser.json({extended: true }))
 
 
 
-// app.use(router)
+app.use(router)
 app.use('/auth', userRouter)
 
 
