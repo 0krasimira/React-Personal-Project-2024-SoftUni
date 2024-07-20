@@ -1,0 +1,144 @@
+/* NavBar.module.css */
+
+/* Import the Google Font in your CSS file or global styles */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+/* Navbar container styles */
+.siteNavbar {
+    background-color: #f0f0f0; /* Light, earthy tone */
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    z-index: 1000; /* Ensure it’s on top of other elements */
+}
+
+/* Navigation styles */
+.siteNavigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/* Logo container styles */
+.logoContainer {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo styles */
+.logo {
+    width: 50px; /* Size of the logo */
+    height: 50px;
+    border-radius: 50%; /* Circular logo */
+    object-fit: cover;
+    background-color: #e0e0e0; /* Subtle background for the logo */
+    border: 2px solid #b0b0b0; /* Light border to make it stand out */
+}
+
+/* Site logo text */
+.siteLogo a {
+    color: #333; /* Dark gray for contrast */
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif; /* Font style */
+    font-size: 24px; /* Font size */
+    margin-left: 10px; /* Space between logo and text */
+}
+
+/* Navigation menu styles */
+.siteMenu {
+    display: flex; /* Ensure items are laid out horizontally */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-direction: row; /* Arrange items horizontally */
+    align-items: center; /* Center items vertically */
+}
+
+/* Menu items styles */
+.siteMenu li {
+    position: relative;
+    margin-right: 20px; /* Space between menu items */
+}
+
+.siteMenu a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #555; /* Medium gray for text */
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.siteMenu a:hover {
+    background-color: #e0e0e0; /* Light gray hover effect */
+    color: #333; /* Dark gray text on hover */
+}
+
+/* Dropdown styles */
+.dropdown {
+    display: none; /* Hide dropdown by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9; /* Very light gray background */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    min-width: 160px; /* Minimum width for dropdown */
+}
+
+/* Show dropdown on hover */
+.hasChildren:hover .dropdown {
+    display: block;
+}
+
+/* Dropdown items styles */
+.dropdown li a {
+    padding: 10px 15px;
+    color: #555; /* Medium gray for text */
+}
+
+.dropdown li a:hover {
+    background-color: #e0e0e0; /* Light gray hover effect */
+}
+
+/* Menu toggle button */
+.siteMenuToggle {
+    display: none; /* Hide toggle button by default */
+    cursor: pointer;
+    color: #333;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .siteNavigation {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .siteMenu {
+        position: static;
+        width: 100%;
+        max-height: 0; /* Hide menu by default on small screens */
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    .siteMenuActive {
+        max-height: 500px; /* Ensure the menu is visible when toggled */
+    }
+
+    .siteMenuToggle {
+        display: block; /* Show menu toggle on smaller screens */
+    }
+}
+
+/* Font Awesome icon styles */
+.fas {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+
+/*TO DO: FIX ICONS IN THE DROPDOWN*/
