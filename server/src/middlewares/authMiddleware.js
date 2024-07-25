@@ -1,5 +1,6 @@
 const jwt = require("../lib/jwt")
 const { SECRET } = require("../config/config")
+const User = require("../models/User")
 // const User = require("../models/User")
 // const sitesManager = require('../managers/sitesManager')
 

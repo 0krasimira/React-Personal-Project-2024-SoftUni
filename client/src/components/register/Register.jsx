@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import styles from './Register.module.css'
+import styles from './Register.module.css';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -27,6 +27,11 @@ export default function Register() {
     e.preventDefault();
     setErrors({ email: '', username: '', password: '', repeatPassword: '' });
 
+    if (form.password !== form.repeatPassword) {
+      setErrors((prev) => ({ ...prev, repeatPassword: "Passwords do not match" }));
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:3000/auth/register', {
         method: 'POST',
@@ -42,9 +47,9 @@ export default function Register() {
       }
 
       alert('Registration successful!');
-      navigate('/auth/login')
+      navigate('/auth/login');
       setForm({ email: '', username: '', password: '', repeatPassword: '' });
-      
+
     } catch (error) {
       console.error('Error:', error.message);
       alert(`Error: ${error.message}`);
@@ -55,8 +60,8 @@ export default function Register() {
     <div className={styles.wrapper}>
       <header>Register Here</header>
       <form onSubmit={handleSubmit}>
-        <div className="field">
-          <div className="input-area">
+        <div className={styles.field}>
+          <div className={styles.inputArea}>
             <input
               type="text"
               name="email"
@@ -65,13 +70,13 @@ export default function Register() {
               onChange={handleChange}
               required
             />
-            <i className="icon fas fa-envelope"></i>
-            {errors.email && <i className="error error-icon fas fa-exclamation-circle"></i>}
+            <i className={`${styles.icon} fas fa-envelope`}></i>
+            {errors.email && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
-          {errors.email && <div className="error error-txt">{errors.email}</div>}
+          {errors.email && <div className={styles.errorTxt}>{errors.email}</div>}
         </div>
-        <div className="field">
-          <div className="input-area">
+        <div className={styles.field}>
+          <div className={styles.inputArea}>
             <input
               type="text"
               name="username"
@@ -80,13 +85,13 @@ export default function Register() {
               onChange={handleChange}
               required
             />
-            <i className="icon fas fa-envelope"></i>
-            {errors.email && <i className="error error-icon fas fa-exclamation-circle"></i>}
+            <i className={`${styles.icon} fas fa-user`}></i>
+            {errors.username && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
-          {errors.email && <div className="error error-txt">{errors.email}</div>}
+          {errors.username && <div className={styles.errorTxt}>{errors.username}</div>}
         </div>
-        <div className="field">
-          <div className="input-area">
+        <div className={styles.field}>
+          <div className={styles.inputArea}>
             <input
               type="password"
               name="password"
@@ -95,13 +100,13 @@ export default function Register() {
               onChange={handleChange}
               required
             />
-            <i className="icon fas fa-lock"></i>
-            {errors.password && <i className="error error-icon fas fa-exclamation-circle"></i>}
+            <i className={`${styles.icon} fas fa-lock`}></i>
+            {errors.password && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
-          {errors.password && <div className="error error-txt">{errors.password}</div>}
+          {errors.password && <div className={styles.errorTxt}>{errors.password}</div>}
         </div>
-        <div className="field">
-          <div className="input-area">
+        <div className={styles.field}>
+          <div className={styles.inputArea}>
             <input
               type="password"
               name="repeatPassword"
@@ -110,14 +115,14 @@ export default function Register() {
               onChange={handleChange}
               required
             />
-            <i className="icon fas fa-lock"></i>
-            {errors.repeatPassword && <i className="error error-icon fas fa-exclamation-circle"></i>}
+            <i className={`${styles.icon} fas fa-lock`}></i>
+            {errors.repeatPassword && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
-          {errors.repeatPassword && <div className="error error-txt">{errors.repeatPassword}</div>}
+          {errors.repeatPassword && <div className={styles.errorTxt}>{errors.repeatPassword}</div>}
         </div>
         <input type="submit" value="Register" />
       </form>
-      <div className="sign-txt">
+      <div className={styles.signTxt}>
         Already a member? <Link to="/login">Login now</Link>
       </div>
     </div>

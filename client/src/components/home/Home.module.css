@@ -8,6 +8,7 @@ body {
 div.wrapper {
 background-color: rgba(56, 43, 43, 0.403);
 min-height: 100vh;
+padding-bottom: 2em;
 }
 
 
@@ -17,7 +18,7 @@ min-height: 100vh;
 
 
 .discover {
-    font-size: 2em;
+    font-size: 1.5em;
     padding-top: 2em;
     text-align: center;
     color: #e0dbdb;
@@ -39,7 +40,7 @@ min-height: 100vh;
 
 .subParagraph {
     padding: 0 2em 0 2em;
-    font-size: 1.5em;
+    font-size: 1em;
     text-align: center;
     
     
