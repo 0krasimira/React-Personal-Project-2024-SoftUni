@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from '../../contexts/authContext'; // Import useAuth from context
 import styles from './Login.module.css';
 
 export default function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth(); // Use the login function from context
 
     const [form, setForm] = useState({
         username: '',
@@ -45,6 +47,12 @@ export default function Login() {
                 if (!response.ok) {
                     throw new Error(data.error || 'Login failed');
                 }
+
+                // Destructure token and username from the response
+                const { token, username } = data;
+                
+                // Use the login function from context
+                login(token, username);
 
                 alert('Login successful!');
                 navigate('/');
@@ -97,3 +105,4 @@ export default function Login() {
         </div>
     );
 }
+

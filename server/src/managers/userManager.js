@@ -23,31 +23,32 @@ exports.register = async (userData) => {
 };
 
 exports.login = async (username, password) => {
-    // Get user from db
-    const user = await User.findOne({ username });
+  // Get user from db
+  const user = await User.findOne({ username });
 
-    // Check if user exists
-    if (!user) {
-        throw new Error('Cannot find username or password');
-    }
+  // Check if user exists
+  if (!user) {
+      throw new Error('Cannot find username or password');
+  }
 
-    // Check if password is valid
-    const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) {
-        throw new Error('Cannot find username or password');
-    }
+  // Check if password is valid
+  const isValid = await bcrypt.compare(password, user.password);
+  if (!isValid) {
+      throw new Error('Cannot find username or password');
+  }
 
-    // Generate jwt token
-    const payload = {
-        _id: user._id,
-        username: user.username,
-    };
+  // Generate jwt token
+  const payload = {
+      _id: user._id,
+      username: user.username,
+  };
 
-    const token = await jwt.sign(payload, SECRET, { expiresIn: '2h' });
+  const token = await jwt.sign(payload, SECRET, { expiresIn: '2h' });
 
-    // return token
-    return token;
+  // Return token and username
+  return { token, username: user.username };
 }
+
 
 exports.checkUsernameAvailability = async (username) => {
     try {

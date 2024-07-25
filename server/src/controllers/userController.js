@@ -29,13 +29,15 @@ router.post('/login', isGuest, async (req, res) => {
     try {
         const { username, password } = req.body;
         console.log('Received credentials:', { username, password }); // Add this line
-        const token = await userManager.login(username, password);
-        res.json({ token });
+        
+        const { token, username: loggedInUsername } = await userManager.login(username, password);
+        res.json({ token, username: loggedInUsername });
     } catch (error) {
         console.error('Error logging user:', error.message); // Ensure you log the error message
         res.status(401).json({ error: 'Invalid username or password' });
     }
 });
+
 
 
 router.get('/logout', isAuth, (req, res) => {
