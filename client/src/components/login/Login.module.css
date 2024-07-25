@@ -1,7 +1,7 @@
 /* Overall Page */
 body {
     background-color: #f2e1e9; /* Light background color */
-    font-family: Arial, sans-serif; /* Consistent font family */
+
     margin: 0;
     padding: 0;
     min-height: 100vh; /* Ensure body takes full height */
@@ -62,14 +62,34 @@ form {
 
 /* Input Styles */
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
     width: 100%; /* Full width of the form */
-    padding: 10px 40px; /* Padding to accommodate the icon */
+    padding: 10px 15px; /* Adjust padding for better placement */
     font-size: 14px;
     color: #333; /* Darker text color for better readability */
     border: 1px solid #e3d6dd;
     border-radius: 5px;
     box-sizing: border-box; /* Ensure padding does not affect width */
+    margin: 0; /* Ensure no extra margin affects positioning */
+    line-height: 1.5; /* Align text properly */
+}
+
+/* Placeholder Styles */
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
+    color: #aaa; /* Light color for placeholder */
+    opacity: 1; /* Ensure placeholder is visible */
+    padding-left: 15px; /* Adjust padding to align placeholder */
+    font-size: 14px; /* Match font size with input */
+}
+
+/* Adjust placeholder text alignment on focus */
+input[type="text"]:focus::placeholder,
+input[type="password"]:focus::placeholder,
+input[type="email"]:focus::placeholder {
+    color: #888; /* Slightly darker placeholder on focus */
 }
 
 /* Submit Button */
@@ -114,7 +134,6 @@ input[type="submit"]:hover {
     margin: 4em;
 }
 
-
 .passTxt a:hover {
     color: #7c0032;
 }
@@ -135,3 +154,5 @@ input[type="submit"]:hover {
 .signTxt a:hover {
     color: #7c0032;
 }
+
+

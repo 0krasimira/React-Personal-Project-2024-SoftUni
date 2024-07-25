@@ -4,11 +4,12 @@ import { AuthProvider, useAuth } from './contexts/authContext'; // Import AuthPr
 import NavBar from './components/nav-bar/NavBar';
 import Home from './components/home/Home';
 import AboutUs from './components/about/AboutUs';
+import ContactUs from './components/contact/ContactUs'; // Assuming you have this component
 import Footer from './components/footer/Footer';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
-// import Profile from './components/profile/Profile'; // Assuming you have these components
-// import Logout from './components/logout/Logout'; // Assuming you have this component
+// import Profile from './components/profile/Profile'; // Uncomment if you have this component
+// import Logout from './components/logout/Logout'; // Uncomment if you have this component
 
 function App() {
     return (
@@ -20,9 +21,11 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/auth/register" element={<Register />} />
                         <Route path="/auth/login" element={<Login />} />
-                        {/* <Route path="/profile" element={<Profile />} />
-                        <Route path="/logout" element={<Logout />} /> */}
                         <Route path="/about-us" element={<AboutUs />} />
+                        <Route path="/contact-us" element={<ContactUs />} /> {/* Added ContactUs route */}
+                        {/* Uncomment these lines if you have these components */}
+                        {/* <Route path="/profile" element={<PrivateRoute element={<Profile />} />} /> */}
+                        {/* <Route path="/logout" element={<PrivateRoute element={<Logout />} />} /> */}
                     </Routes>
                 </div>
                 <Footer />
