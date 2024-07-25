@@ -59,8 +59,8 @@ export default function NavBar({ isLoggedIn }) {
                                     </>
                                 ) : (
                                     <>
-                                        <li><Link to="login">Login</Link></li>
-                                        <li><Link to="register">Register</Link></li>
+                                        <li><Link to="auth/login">Login</Link></li>
+                                        <li><Link to="auth/register">Register</Link></li>
                                         <li className={styles.hasChildren}>
                                             <Link to="archaeological-sites">Archaeological Sites</Link>
                                             <ul className={styles.dropdown}>

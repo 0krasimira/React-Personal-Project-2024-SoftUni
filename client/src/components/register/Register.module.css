@@ -1,0 +1,139 @@
+/* Overall Page */
+body {
+    background-color: #f2e1e9; /* Light background color */
+    font-family: Arial, sans-serif; /* Consistent font family */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Ensure body takes full height */
+    display: flex;
+    flex-direction: column; /* For footer alignment */
+}
+
+
+
+/* Wrapper for the Form */
+.wrapper {
+    width: 50%; /* Set width to 50% of the viewport width */
+    max-width: 600px; /* Maximum width for larger screens */
+    margin: 50px auto; /* Center the form horizontally */
+    padding: 40px;
+    background: #ffffff; /* White background for the form */
+    border: 1px solid #ddd; /* Border around the form */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-sizing: border-box; /* Ensure padding does not affect width */
+    position: relative; /* Ensure it does not overlap with other content */
+}
+
+/* Header Style */
+header {
+    font-size: 24px;
+    color: #a0496c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Style */
+form {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.5em;
+}
+
+/* Field Container */
+.field {
+    margin-bottom: 20px;
+    position: relative; /* Positioning for icons and errors */
+}
+
+/* Input Area */
+.input-area {
+    position: relative;
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Full width of the form */
+    padding: 10px 20px; /* Adjusted padding */
+    font-size: 14px;
+    color: #333; /* Darker text color for better readability */
+    border: 1px solid #e3d6dd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding does not affect width */
+}
+
+input[type="submit"] {
+    background: #a0496c;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Full width of the form */
+}
+
+input[type="submit"]:hover {
+    background: #7c0032;
+}
+
+/* Icons */
+.icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #a0496c;
+}
+
+/* Error Icons and Text */
+.error-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #f63c85;
+    display: none; /* Hidden by default */
+}
+
+.error-txt {
+    color: #f63c85;
+    font-size: 12px;
+    display: none; /* Hidden by default */
+}
+
+/* Password Text Link */
+.pass-txt {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.pass-txt a {
+    color: #a0496c;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.pass-txt a:hover {
+    color: #7c0032;
+}
+
+/* Sign In Text */
+.sign-txt {
+    text-align: center;
+    margin-top: 20px;
+    color: #a0496c;
+}
+
+.sign-txt a {
+    color: #f63c85;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sign-txt a:hover {
+    
+    color: #7c0032;
+}
+

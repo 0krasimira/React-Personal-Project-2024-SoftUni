@@ -5,7 +5,7 @@ const Destination = require('../models/Destination')
 const getErrorMessage = require('../utils/errorUtils')
 
 router.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:4200'),
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5173'),
         res.header('Access-Control-Allow-Methods', '*'),
         res.setHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization");
 
