@@ -91,9 +91,7 @@ export default function Home() {
                     ))}
                 </div>
             </div>
-            <footer className={styles.footer}>
-                <p>ArchaeoConnect 2024. All rights reserved.</p>
-            </footer>
+            
         </div>
     );
 }

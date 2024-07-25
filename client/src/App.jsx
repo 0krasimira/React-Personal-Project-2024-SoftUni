@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import Home from './components/home/Home'
 import NavBar from './components/nav-bar/NavBar';
 import { Route, Routes } from 'react-router-dom';
+import AboutUs from './components/about/AboutUs';
+import Footer from './components/footer/Footer';
 
 
 
@@ -13,8 +15,9 @@ function App() {
             <NavBar isLoggedIn={true} /> {/* or false depending on the state */}
             <Routes>
               <Route path="/" element={<Home />}/>
+              <Route path="/about-us" element={<AboutUs />}/>
             </Routes>
-            
+            <Footer />
         </div>
     );
 }

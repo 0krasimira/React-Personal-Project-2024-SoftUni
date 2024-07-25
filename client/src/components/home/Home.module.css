@@ -15,15 +15,6 @@ min-height: 100vh;
     flex: 1; /* Allows header to take up remaining space */
 }
 
-.footer {
-    position: relative;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    font-size: 1.2em;
-    border-top: 1px solid #444;
-}
 
 .discover {
     font-size: 2em;
