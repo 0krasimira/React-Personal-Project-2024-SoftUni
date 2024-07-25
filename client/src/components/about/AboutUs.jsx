@@ -6,7 +6,7 @@ export default function AboutPage() {
     return (
         <div className={styles.pageWrapper}>
             <main className={styles.mainContent}>
-                <section id="about">
+                <section id="about" className={styles.about}>
                     <div className={styles.aboutTitle}>
                         <h1 className={styles.h1}>About Us</h1>
                     </div>
