@@ -5,11 +5,11 @@
 
 /* Navbar container styles */
 .siteNavbar {
-    background-color: #f0f0f0; /* Light, earthy tone */
+    background-color: #f0f0f0;
     padding: 10px 0;
     position: relative;
     width: 100%;
-    z-index: 1000; /* Ensure it’s on top of other elements */
+    z-index: 1000;
 }
 
 /* Navigation styles */
@@ -28,85 +28,86 @@
 
 /* Logo styles */
 .logo {
-    width: 50px; /* Size of the logo */
+    width: 50px;
     height: 50px;
-    border-radius: 50%; /* Circular logo */
+    border-radius: 50%;
     object-fit: cover;
-    background-color: #e0e0e0; /* Subtle background for the logo */
-    border: 2px solid #b0b0b0; /* Light border to make it stand out */
+    background-color: #e0e0e0;
+    border: 2px solid #b0b0b0;
 }
 
 /* Site logo text */
 .siteLogo a {
-    color: #333; /* Dark gray for contrast */
+    color: #333;
     text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif; /* Font style */
-    font-size: 24px; /* Font size */
-    margin-left: 10px; /* Space between logo and text */
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 24px;
+    margin-left: 10px;
 }
 
 /* Navigation menu styles */
 .siteMenu {
-    display: flex; /* Ensure items are laid out horizontally */
+    display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-direction: row; /* Arrange items horizontally */
-    align-items: center; /* Center items vertically */
+    flex-direction: row;
+    align-items: center;
 }
 
 /* Menu items styles */
 .siteMenu li {
     position: relative;
-    margin-right: 20px; /* Space between menu items */
+    margin-right: 20px;
 }
 
 .siteMenu a {
     display: flex;
     align-items: center;
     padding: 10px 15px;
-    color: #555; /* Medium gray for text */
+    color: #555;
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
+    vertical-align: middle; /* Ensure proper vertical alignment */
 }
 
 .siteMenu a:hover {
-    background-color: #e0e0e0; /* Light gray hover effect */
-    color: #333; /* Dark gray text on hover */
+    background-color: #e0e0e0;
+    color: #333;
 }
 
 /* Dropdown styles */
 .dropdown {
-    display: none; /* Hide dropdown by default */
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #f9f9f9; /* Very light gray background */
+    background-color: #f9f9f9;
     list-style: none;
     padding: 0;
     margin: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    min-width: 160px; /* Minimum width for dropdown */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
 }
 
-/* Show dropdown on hover */
 .hasChildren:hover .dropdown {
     display: block;
 }
 
-/* Dropdown items styles */
 .dropdown li a {
     padding: 10px 15px;
-    color: #555; /* Medium gray for text */
+    color: #555;
+    display: flex;
+    align-items: center; /* Ensure icons and text are centered vertically */
 }
 
 .dropdown li a:hover {
-    background-color: #e0e0e0; /* Light gray hover effect */
+    background-color: #e0e0e0;
 }
 
 /* Menu toggle button */
 .siteMenuToggle {
-    display: none; /* Hide toggle button by default */
+    display: none;
     cursor: pointer;
     color: #333;
 }
@@ -121,23 +122,24 @@
     .siteMenu {
         position: static;
         width: 100%;
-        max-height: 0; /* Hide menu by default on small screens */
+        max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease-in-out;
     }
 
     .siteMenuActive {
-        max-height: 500px; /* Ensure the menu is visible when toggled */
+        max-height: 500px;
     }
 
     .siteMenuToggle {
-        display: block; /* Show menu toggle on smaller screens */
+        display: block;
     }
 }
 
 /* Font Awesome icon styles */
 .fas {
     margin-right: 8px; /* Space between icon and text */
+    vertical-align: middle; /* Ensure icons align with text baseline */
 }
 
 
