@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css'; // Import the CSS Module
+import { useAuth } from '../../contexts/authContext'; // Import useAuth from context
 
-export default function NavBar({ isLoggedIn }) {
+export default function NavBar() {
+    const { token, username, logout } = useAuth(); // Use context to get authentication state
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleToggle = () => {
         setMenuOpen(!menuOpen);
     };
+
+    const handleLogout = () => {
+        logout();
+        // Optionally, redirect to home or login page
+    };
+
 
     return (
         <header className={styles.siteNavbar} role="banner">
@@ -22,58 +30,61 @@ export default function NavBar({ isLoggedIn }) {
                                     className={styles.logo}
                                 />
                                 <h1 className={styles.siteLogo}>
-                                    <Link to="index.html">ArchaeoConnect</Link>
+                                    <Link to="/">ArchaeoConnect</Link>
                                 </h1>
                             </div>
                             <ul
                                 className={`${styles.siteMenu} ${menuOpen ? styles.siteMenuActive : ''}`}
                             >
                                 <li><Link to="/">Home</Link></li>
-                                {isLoggedIn ? (
+                                {token ? (
                                     <>
+                                        {/* <li className={styles.greeting}>
+                                            <span>Hello, {username}</span>
+                                        </li> */}
                                         <li className={styles.hasChildren}>
-                                            <Link to="profile">Profile</Link>
+                                            <Link to="/profile"> Hello, <span className={styles.username}>{username}</span></Link>
                                             <ul className={styles.dropdown}>
-                                                <li><Link to="myprofile">My Profile</Link></li>
-                                                <li><Link to="logout">Logout</Link></li>
+                                                <li><Link to="/myprofile">My Profile</Link></li>
+                                                <li><Link to="#" onClick={handleLogout}>Logout</Link></li>
                                             </ul>
                                         </li>
                                         <li className={styles.hasChildren}>
-                                            <Link to="archaeological-sites">Archaeological Sites</Link>
+                                            <Link to="/archaeological-sites">Archaeological Sites</Link>
                                             <ul className={styles.dropdown}>
-                                                <li><Link to="add-site">
+                                                <li><Link to="/add-site">
                                                     <i className="fas fa-plus"></i> Add a Site
                                                 </Link></li>
-                                                <li><Link to="my-sites"><i className="fas fa-monument"></i> My Sites
+                                                <li><Link to="/my-sites"><i className="fas fa-monument"></i> My Sites
                                                 </Link></li>
-                                                <li><Link to="all-sites">
+                                                <li><Link to="/all-sites">
                                                     <i className="fas fa-glasses"></i> Browse All Sites
                                                 </Link></li>
-                                                <li><Link to="search-sites">
+                                                <li><Link to="/search-sites">
                                                     <i className="fas fa-search"></i> Search Sites
                                                 </Link></li>
                                             </ul>
                                         </li>
-                                        <li><Link to="contact-us">Contact Us</Link></li>
-                                        <li><Link to="about-us">About Us</Link></li>
+                                        <li><Link to="/contact-us">Contact Us</Link></li>
+                                        <li><Link to="/about-us">About Us</Link></li>
                                     </>
                                 ) : (
                                     <>
-                                        <li><Link to="auth/login">Login</Link></li>
-                                        <li><Link to="auth/register">Register</Link></li>
+                                        <li><Link to="/auth/login">Login</Link></li>
+                                        <li><Link to="/auth/register">Register</Link></li>
                                         <li className={styles.hasChildren}>
-                                            <Link to="archaeological-sites">Archaeological Sites</Link>
+                                            <Link to="/archaeological-sites">Archaeological Sites</Link>
                                             <ul className={styles.dropdown}>
-                                                <li><Link to="all-sites">
+                                                <li><Link to="/all-sites">
                                                     <i className="fas fa-glasses"></i> Browse All Sites
                                                 </Link></li>
-                                                <li><Link to="search-sites">
+                                                <li><Link to="/search-sites">
                                                     <i className="fas fa-search"></i> Search Sites
                                                 </Link></li>
                                             </ul>
                                         </li>
-                                        <li><Link to="contact-us">Contact Us</Link></li>
-                                        <li><Link to="about-us">About Us</Link></li>
+                                        <li><Link to="/contact-us">Contact Us</Link></li>
+                                        <li><Link to="/about-us">About Us</Link></li>
                                     </>
                                 )}
                             </ul>

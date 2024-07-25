@@ -1,5 +1,3 @@
-/* NavBar.module.css */
-
 /* Import the Google Font in your CSS file or global styles */
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
@@ -76,7 +74,6 @@
     color: #333;
 }
 
-/* Dropdown styles */
 .dropdown {
     display: none;
     position: absolute;
@@ -88,10 +85,16 @@
     margin: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     min-width: 160px;
+    width: 100%; /* Ensure the dropdown spans the full width */
+    box-sizing: border-box; /* Include padding and border in element's total width */
 }
 
 .hasChildren:hover .dropdown {
     display: block;
+}
+
+.dropdown li {
+    width: 100%; /* Ensure list items span the full width */
 }
 
 .dropdown li a {
@@ -99,17 +102,12 @@
     color: #555;
     display: flex;
     align-items: center; /* Ensure icons and text are centered vertically */
+    width: 100%; /* Ensure the anchor spans the full width */
+    box-sizing: border-box; /* Include padding in the total width */
 }
 
 .dropdown li a:hover {
     background-color: #e0e0e0;
-}
-
-/* Menu toggle button */
-.siteMenuToggle {
-    display: none;
-    cursor: pointer;
-    color: #333;
 }
 
 /* Responsive styles */
@@ -142,5 +140,9 @@
     vertical-align: middle; /* Ensure icons align with text baseline */
 }
 
+.username {
+    color: #8d1a1c; /* Change to your desired color */
+    font-weight: bold; /* Optional: makes the text bold */
+}
 
-/*TO DO: FIX ICONS IN THE DROPDOWN*/
+
