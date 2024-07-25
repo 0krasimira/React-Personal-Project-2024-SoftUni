@@ -53,13 +53,15 @@ export default function Home() {
                 <div className={styles.overlay}>
                     <div className={styles.container}>
                         <div className={styles.headerContent}>
-                            <h1 className={styles.discover}><span>Discover </span>the most captivating archaeological sites in Bulgaria</h1>
-                            <p className={styles.subParagraph}>
-                                <blockquote cite="https://example.com">
+                            <h1 className={styles.discover}>
+                                <span>Discover </span>the most captivating archaeological sites in Bulgaria
+                            </h1>
+                            <blockquote className={styles.blockquote} cite="https://example.com">
+                                <p className={styles.blockquoteText}>
                                     “For me, archaeologists do not discover the past; they work on what remains. Archaeology is about our relationships with what is left of the past. And more – archaeology is the discipline of things – the history of design, how people get on with the material world, materiality itself.”
-                                    <footer>— Michael Shanks, Archaeologist</footer>
-                                </blockquote>
-                            </p>
+                                </p>
+                                <footer className={styles.blockquoteFooter}>— Michael Shanks, Archaeologist</footer>
+                            </blockquote>
                             {/* <button className={styles.button}><a href="#" className="text-uppercase">Book Now</a></button> */}
                         </div>
                     </div>
@@ -91,7 +93,6 @@ export default function Home() {
                     ))}
                 </div>
             </div>
-            
         </div>
     );
 }

@@ -1,49 +1,57 @@
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Apply the font to the body element to ensure all text uses this font */
+/* Apply the font to the body element */
 body {
     font-family: 'Josefin Sans', sans-serif;
 }
 
 div.wrapper {
-background-color: rgba(56, 43, 43, 0.403);
-min-height: 100vh;
-padding-bottom: 2em;
+    background-color: rgba(56, 43, 43, 0.403);
+    min-height: 100vh;
+    padding-bottom: 2em;
 }
-
 
 .header {
     flex: 1; /* Allows header to take up remaining space */
 }
 
-
 .discover {
-    font-size: 1.5em;
+    font-size: 1.8em;
     padding-top: 2em;
+    padding-bottom: 1em;
     text-align: center;
     color: #e0dbdb;
     font-weight: bold;
+    font-style: italic;
 }
 
+/* Blockquote styles */
 .subParagraph blockquote {
     margin: 1em 0;
-    padding: 1em 1em;
+    padding: 1em;
     background-color: #f9f9f9;
+    border-left: 4px solid #ddd;
     border-radius: 0.3em;
+    font-style: italic;
+    position: relative;
+    color: #666;
+    text-align: center; /* Center-align text */
 }
 
-.subParagraph footer {
+.subParagraph blockquote footer {
     text-align: right;
     font-style: italic;
     color: #555;
+    margin-top: 1em;
+    font-size: 0.9em; /* Adjusted size for footer */
 }
 
 .subParagraph {
-    padding: 0 2em 0 2em;
+    padding: 0 2em;
     font-size: 1em;
     text-align: center;
-    
-    
 }
 
 .slideshowContainer {
@@ -145,3 +153,14 @@ padding-bottom: 2em;
     background-color: #717171;
 }
 
+.blockquoteFooter {
+    font-style: italic;
+    color:rgb(205, 197, 197);
+    text-align: right;
+    padding-right: 0.8em;
+    
+}
+
+.blockquoteText {
+    font-family: "Cedarville Cursive", cursive;
+}
