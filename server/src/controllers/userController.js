@@ -9,15 +9,34 @@ router.get('/register', (req, res) => {
     res.status(405).json({ error: 'GET method not allowed for this endpoint - register' });
 });
 
+
 router.post('/register', isGuest, async (req, res) => {
     try {
         const user = await userManager.register(req.body);
         res.json(user);
     } catch (error) {
-        console.error('Error registering user:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        if (error.name === 'ValidationError') {
+            // Extract and send specific validation error messages
+            const errors = Object.values(error.errors).map(err => ({
+                field: err.path,
+                message: err.message
+            }));
+            return res.status(400).json({ errors });
+        } else {
+            // Custom error handling for specific errors
+            if (error.message === 'Email already exists') {
+                return res.status(400).json({ errors: [{ field: 'email', message: error.message }] });
+            } else if (error.message === 'Username is already taken') {
+                return res.status(400).json({ errors: [{ field: 'username', message: error.message }] });
+            }
+
+            console.error('Error registering user:', error);
+            return res.status(500).json({ error: 'Something bad happened. Please, try again.' });
+        }
     }
 });
+
+
 
 
 router.get('/login', isGuest, (req, res) => {

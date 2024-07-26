@@ -3,7 +3,7 @@ const User = require('../models/User')
 
 exports.create = async (userId, siteData) => {
     try {
-        // Create a new painting document
+        // Create a new destination document
         const newDestination = new Destination({
             ...destinationData,
             author: userId, // Set the author field to the ObjectId of the authenticated user

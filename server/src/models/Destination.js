@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// const {commentSchema} = require('../models/Comment')
+const {commentSchema} = require('../models/Comment')
 
 
 const destinationSchema = new mongoose.Schema({
@@ -36,7 +36,7 @@ const destinationSchema = new mongoose.Schema({
             type: mongoose.Types.ObjectId,
             ref: "User",
         },
-        // comments: [commentSchema]
+        comments: [commentSchema]
     });
 
 

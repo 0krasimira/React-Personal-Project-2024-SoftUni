@@ -1,36 +1,35 @@
 /* Overall Page */
 body {
-    background-color: #f2e1e9; /* Light background color */
-
+    background-color: #f2e1e9;
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Ensure body takes full height */
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; /* Layout the footer at the bottom */
+    flex-direction: column;
 }
 
 /* Main Content Wrapper */
 .main-content {
-    flex: 1; /* Allow this to grow and push footer down */
+    flex: 1;
     display: flex;
-    justify-content: center; /* Center the content horizontally */
-    align-items: center; /* Center the content vertically */
-    padding: 2em; /* Add some padding around the content */
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
     padding-bottom: 3em;
 }
 
 /* Wrapper Style */
 .wrapper {
-    width: 50%; /* Set width to 50% of the viewport width */
-    max-width: 600px; /* Maximum width for larger screens */
-    margin: 50px auto; /* Center the form horizontally */
+    width: 50%;
+    max-width: 600px;
+    margin: 50px auto;
     min-height: 50vh;
     padding: 5em;
-    background: #ffffff; /* White background for the form */
-    border: 1px solid #ddd; /* Border around the form */
+    background: #ffffff;
+    border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    box-sizing: border-box; /* Ensure padding does not affect width */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 /* Header Style */
@@ -50,46 +49,38 @@ form {
 /* Field Container */
 .field {
     margin-bottom: 20px;
-    position: relative; /* Positioning for icons and errors */
+    position: relative;
 }
 
 /* Input Area */
 .inputArea {
-    position: relative; /* For positioning the icon inside the input */
-    display: flex; /* Use flexbox to align items */
-    align-items: center; /* Center items vertically */
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 /* Input Styles */
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-    width: 100%; /* Full width of the form */
-    padding: 10px 15px; /* Adjust padding for better placement */
+    width: 100%;
+    padding: 10px 40px 10px 30px; 
     font-size: 14px;
-    color: #333; /* Darker text color for better readability */
+    color: #333;
     border: 1px solid #e3d6dd;
     border-radius: 5px;
-    box-sizing: border-box; /* Ensure padding does not affect width */
-    margin: 0; /* Ensure no extra margin affects positioning */
-    line-height: 1.5; /* Align text properly */
+    box-sizing: border-box;
+    margin: 0;
+    line-height: 1.5;
 }
 
 /* Placeholder Styles */
 input[type="text"]::placeholder,
 input[type="password"]::placeholder,
 input[type="email"]::placeholder {
-    color: #aaa; /* Light color for placeholder */
-    opacity: 1; /* Ensure placeholder is visible */
-    padding-left: 15px; /* Adjust padding to align placeholder */
-    font-size: 14px; /* Match font size with input */
-}
-
-/* Adjust placeholder text alignment on focus */
-input[type="text"]:focus::placeholder,
-input[type="password"]:focus::placeholder,
-input[type="email"]:focus::placeholder {
-    color: #888; /* Slightly darker placeholder on focus */
+    color: #aaa;
+    opacity: 1;
+    font-size: 14px;
 }
 
 /* Submit Button */
@@ -101,7 +92,7 @@ input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%; /* Full width of the form */
+    width: 100%;
 }
 
 input[type="submit"]:hover {
@@ -111,9 +102,9 @@ input[type="submit"]:hover {
 /* Icons */
 .icon {
     position: absolute;
-    left: 10px; /* Position the icon inside the input */
+    left: 10px;
     color: #a0496c;
-    pointer-events: none; /* Ensure icon does not block input */
+    pointer-events: none;
 }
 
 /* Error Icons and Text */
@@ -154,5 +145,4 @@ input[type="submit"]:hover {
 .signTxt a:hover {
     color: #7c0032;
 }
-
 

@@ -42,13 +42,23 @@ export default function Register() {
       });
 
       const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error || 'Registration failed');
-      }
 
-      alert('Registration successful!');
-      navigate('/auth/login');
-      setForm({ email: '', username: '', password: '', repeatPassword: '' });
+      if (!response.ok) {
+        if (data.errors) {
+          // Handle specific errors from backend
+          const errorMap = {};
+          data.errors.forEach(err => {
+            errorMap[err.field] = err.message;
+          });
+          setErrors(errorMap);
+        } else {
+          throw new Error(data.error || 'Registration was unsuccessful. Please, try again.');
+        }
+      } else {
+        alert('Registration successful!');
+        navigate('/auth/login');
+        setForm({ email: '', username: '', password: '', repeatPassword: '' });
+      }
 
     } catch (error) {
       console.error('Error:', error.message);
@@ -123,7 +133,7 @@ export default function Register() {
         <input type="submit" value="Register" />
       </form>
       <div className={styles.signTxt}>
-        Already a member? <Link to="/login">Login now</Link>
+        Already a member? <Link to="/auth/login">Login now</Link>
       </div>
     </div>
   );

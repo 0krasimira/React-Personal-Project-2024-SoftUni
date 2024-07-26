@@ -5,22 +5,23 @@ const { SECRET } = require('../config/config');
 // const Site = require('../models/Site')
 
 exports.register = async (userData) => {
+  const email = await User.findOne({ email: userData.email });
+  if (email) {
+      const error = new Error("Email already exists");
+      error.name = 'DuplicateEmailError';
+      throw error;
+  }
 
+  const username = await User.findOne({ username: userData.username });
+  if (username) {
+      const error = new Error("Username is already taken");
+      error.name = 'DuplicateUsernameError';
+      throw error;
+  }
 
-   const email = await User.findOne({email: userData.email}) 
-
-   if(email){
-    throw new Error("Email already exists")
-   }
-
-    const username = await User.findOne({username: userData.username}) 
-   
-   if(username){
-    throw new Error("Username is already taken")
-   }
-
-   return User.create(userData)
+  return User.create(userData);
 };
+
 
 exports.login = async (username, password) => {
   // Get user from db
