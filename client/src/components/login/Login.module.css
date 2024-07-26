@@ -61,8 +61,7 @@ form {
 
 /* Input Styles */
 input[type="text"],
-input[type="password"],
-input[type="email"] {
+input[type="password"] {
     width: 100%;
     padding: 10px 40px 10px 30px; 
     font-size: 14px;

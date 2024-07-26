@@ -44,11 +44,13 @@ router.get('/add-destination', isAuth, async (req, res) => {
 
 router.post('/add-destination', isAuth, async (req, res) => {
     // Extract painting data from the request body
-    const destinationData = req.body;
-    console.log('destinationData:', destinationData)
+
     try {
         // Create a new painting document with the author set to the _id of the authenticated user
+        const destinationData = req.body;
+        console.log('destinationData:', destinationData)
         const newDestination = await destinationManager.create(req.user._id, destinationData);
+        console.log('newDestination:', newDestination)
         res.json(newDestination);
     } catch (error) {
         console.error('Error creating destination:', error);
@@ -65,7 +67,7 @@ router.post('/add-destination', isAuth, async (req, res) => {
 //     // console.log('Requested site ID:', siteId);
 //     try {
 //         const oneDestination = await destinationManager.getOneWithDetails(destinationId);
-      
+
 //         if (!oneDestination) {
 //             return res.status(404).json({ message: 'Destination not found' });
 //         }
@@ -126,17 +128,17 @@ router.post('/add-destination', isAuth, async (req, res) => {
 //     try {
 //       // Extract min and max price from request query
 //       const { minPrice, maxPrice } = req.query;
-  
+
 //       // Check if minPrice and maxPrice are provided
 //       if (!minPrice || !maxPrice) {
 //         return res.status(400).json({ message: 'Please provide both minPrice and maxPrice.' });
 //       }
-  
+
 //       // Query the database for paintings within the specified price range
 //       const paintings = await Painting.find({
 //         price: { $gte: minPrice, $lte: maxPrice }
 //       });
-  
+
 //       // Return the paintings found
 //       res.json(paintings);
 //     } catch (error) {

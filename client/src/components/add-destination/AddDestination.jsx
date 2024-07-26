@@ -69,7 +69,6 @@ export default function AddDestination() {
       alert(`Error: ${error.message}`);
     }
   };
-  
 
   return (
     <div className={styles.wrapper}>
@@ -85,6 +84,7 @@ export default function AddDestination() {
             value={form.name}
             onChange={handleChange}
             required
+            className={styles.inputField} // Apply the .inputField class
           />
           {errors.name && <div className={styles.errorTxt}>{errors.name}</div>}
         </div>
@@ -99,6 +99,7 @@ export default function AddDestination() {
             value={form.location}
             onChange={handleChange}
             required
+            className={styles.inputField} // Apply the .inputField class
           />
           {errors.location && <div className={styles.errorTxt}>{errors.location}</div>}
         </div>
@@ -111,6 +112,7 @@ export default function AddDestination() {
             value={form.yearOfDiscovery}
             onChange={handleChange}
             required
+            className={styles.inputField} // Apply the .inputField class
           >
             <option value="" disabled>Select a year</option>
             {Array.from({ length: new Date().getFullYear() - 1870 + 1 }, (_, i) => 1870 + i)
@@ -131,6 +133,7 @@ export default function AddDestination() {
             value={form.prevInvestigations}
             onChange={handleChange}
             required
+            className={styles.inputField} // Apply the .inputField class
           ></textarea>
           {errors.prevInvestigations && <div className={styles.errorTxt}>{errors.prevInvestigations}</div>}
         </div>
@@ -145,12 +148,16 @@ export default function AddDestination() {
             value={form.imageUrl}
             onChange={handleChange}
             required
+            className={styles.inputField} // Apply the .inputField class
           />
           {errors.imageUrl && <div className={styles.errorTxt}>{errors.imageUrl}</div>}
         </div>
 
-        <input type="submit" value="Add Destination" />
+        <input type="submit" value="Add Destination" className={styles.submitButton} />
       </form>
     </div>
   );
 }
+
+
+//todo - redirect to destinations list once added successfully

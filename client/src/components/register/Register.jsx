@@ -72,6 +72,7 @@ export default function Register() {
       <form onSubmit={handleSubmit}>
         <div className={styles.field}>
           <div className={styles.inputArea}>
+            <i className={`${styles.icon} fas fa-envelope`}></i>
             <input
               type="text"
               name="email"
@@ -80,13 +81,13 @@ export default function Register() {
               onChange={handleChange}
               required
             />
-            <i className={`${styles.icon} fas fa-envelope`}></i>
             {errors.email && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
           {errors.email && <div className={styles.errorTxt}>{errors.email}</div>}
         </div>
         <div className={styles.field}>
           <div className={styles.inputArea}>
+            <i className={`${styles.icon} fas fa-user`}></i>
             <input
               type="text"
               name="username"
@@ -95,13 +96,13 @@ export default function Register() {
               onChange={handleChange}
               required
             />
-            <i className={`${styles.icon} fas fa-user`}></i>
             {errors.username && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
           {errors.username && <div className={styles.errorTxt}>{errors.username}</div>}
         </div>
         <div className={styles.field}>
           <div className={styles.inputArea}>
+            <i className={`${styles.icon} fas fa-lock`}></i>
             <input
               type="password"
               name="password"
@@ -110,13 +111,13 @@ export default function Register() {
               onChange={handleChange}
               required
             />
-            <i className={`${styles.icon} fas fa-lock`}></i>
             {errors.password && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
           {errors.password && <div className={styles.errorTxt}>{errors.password}</div>}
         </div>
         <div className={styles.field}>
           <div className={styles.inputArea}>
+            <i className={`${styles.icon} fas fa-lock`}></i>
             <input
               type="password"
               name="repeatPassword"
@@ -125,7 +126,6 @@ export default function Register() {
               onChange={handleChange}
               required
             />
-            <i className={`${styles.icon} fas fa-lock`}></i>
             {errors.repeatPassword && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
           {errors.repeatPassword && <div className={styles.errorTxt}>{errors.repeatPassword}</div>}

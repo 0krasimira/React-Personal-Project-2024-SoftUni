@@ -53,14 +53,17 @@ form {
 
 /* Input Styles */
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
     width: 100%; /* Full width of the form */
-    padding: 10px 40px; /* Padding to accommodate the icon */
+    padding: 10px 10px 10px 40px; /* Padding to accommodate the icon */
     font-size: 14px;
     color: #333; /* Darker text color for better readability */
     border: 1px solid #e3d6dd;
     border-radius: 5px;
     box-sizing: border-box; /* Ensure padding does not affect width */
+    margin: 0;
+    line-height: 1.5;
 }
 
 /* Submit Button */
@@ -97,6 +100,7 @@ input[type="submit"]:hover {
 .errorTxt {
     color: #f63c85;
     font-size: 12px;
+    margin-top: 5px; /* Ensure spacing from input fields */
 }
 
 /* Sign Up Text */

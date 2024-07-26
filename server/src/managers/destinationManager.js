@@ -1,7 +1,7 @@
 const Destination = require('../models/Destination')
 const User = require('../models/User')
 
-exports.create = async (userId, siteData) => {
+exports.create = async (userId, destinationData) => {
     try {
         // Create a new destination document
         const newDestination = new Destination({
