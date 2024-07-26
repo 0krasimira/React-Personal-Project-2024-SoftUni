@@ -115,7 +115,8 @@ export default function AddDestination() {
             className={styles.inputField} // Apply the .inputField class
           >
             <option value="" disabled>Select a year</option>
-            {Array.from({ length: new Date().getFullYear() - 1870 + 1 }, (_, i) => 1870 + i)
+            {Array.from({ length: new Date().getFullYear() - 1878 + 1 }, (_, i) => 1878 + i)
+              .reverse()
               .map(year => (
                 <option key={year} value={year}>{year}</option>
               ))

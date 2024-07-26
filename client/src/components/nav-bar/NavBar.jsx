@@ -55,14 +55,14 @@ export default function NavBar() {
                                                 <li><Link to="/add-destination">
                                                     <i className="fas fa-plus"></i> Add a Destination
                                                 </Link></li>
-                                                <li><Link to="/my-sites"><i className="fas fa-monument"></i> My Destinations
+                                                <li><Link to="/my-destinations"><i className="fas fa-monument"></i> My Destinations
                                                 </Link></li>
-                                                <li><Link to="/all-sites">
+                                                <li><Link to="/all-destinations">
                                                     <i className="fas fa-glasses"></i> Browse All Destinations
                                                 </Link></li>
-                                                <li><Link to="/search-sites">
+                                                {/* <li><Link to="/search-sites">
                                                     <i className="fas fa-search"></i> Search Destinations
-                                                </Link></li>
+                                                </Link></li> */}
                                             </ul>
                                         </li>
                                         <li><Link to="/contact-us">Contact Us</Link></li>
@@ -73,10 +73,10 @@ export default function NavBar() {
                                         <li><Link to="/auth/login">Login</Link></li>
                                         <li><Link to="/auth/register">Register</Link></li>
                                         <li className={styles.hasChildren}>
-                                            <Link to="/archaeological-sites">Archaeological Sites</Link>
+                                            <Link to="/all-destinations">Archaeological Sites</Link>
                                             <ul className={styles.dropdown}>
-                                                <li><Link to="/all-sites">
-                                                    <i className="fas fa-glasses"></i> Browse All Sites
+                                                <li><Link to="/all-destinations">
+                                                    <i className="fas fa-glasses"></i> Browse All Destinations
                                                 </Link></li>
                                                 <li><Link to="/search-sites">
                                                     <i className="fas fa-search"></i> Search Sites

@@ -25,6 +25,16 @@ router.get('', async (req, res) => {
     }
 });
 
+router.get('/all-destinations', async (req, res) => {
+    try {
+        const allDestinations = await destinationManager.getAll();
+        res.json(allDestinations);
+    } catch (error) {
+        console.error('Error fetching destinations:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 router.get('/most-popular', async (req, res) => {
     try {
         const mostPopularDestinations = await destinationManager.getMostPopularDestinations();
@@ -58,8 +68,6 @@ router.post('/add-destination', isAuth, async (req, res) => {
     }
 });
 
-
-// todo - continue from here! check why destinationData is not defined!
 
 
 // router.get('/:destinationId', async (req, res) => {
