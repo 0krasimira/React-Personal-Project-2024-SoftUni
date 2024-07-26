@@ -56,21 +56,21 @@ router.post('/add-destination', isAuth, async (req, res) => {
     }
 });
 
-router.get('/:destinationId', async (req, res) => {
-    const destinationId = req.params.destinationId;
-    // console.log('Requested site ID:', siteId);
-    try {
-        const oneDestination = await destinationManager.getOneWithDetails(destinationId);
+// router.get('/:destinationId', async (req, res) => {
+//     const destinationId = req.params.destinationId;
+//     // console.log('Requested site ID:', siteId);
+//     try {
+//         const oneDestination = await destinationManager.getOneWithDetails(destinationId);
       
-        if (!oneDestination) {
-            return res.status(404).json({ message: 'Destination not found' });
-        }
-        return res.json(oneDestination);
-    } catch (error) {
-        console.error('Error fetching one destination:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
+//         if (!oneDestination) {
+//             return res.status(404).json({ message: 'Destination not found' });
+//         }
+//         return res.json(oneDestination);
+//     } catch (error) {
+//         console.error('Error fetching one destination:', error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// });
 
 
 

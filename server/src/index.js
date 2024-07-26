@@ -1,8 +1,11 @@
 const expressConfigurator = require("./config/expressConfigurator")
 const express = require("express")
 const mongoose = require("mongoose")
+
 const router = require('./controllers/destinationController')
 const userRouter = require('./controllers/userController')
+const contactRouter = require('./controllers/contactController')
+
 const cors = require('cors')
 
 const bodyParser = require("body-parser")
@@ -17,6 +20,7 @@ app.use(bodyParser.json({extended: true }))
 
 
 app.use(router)
+app.use(contactRouter)
 app.use('/auth', userRouter)
 
 

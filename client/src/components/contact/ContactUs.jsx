@@ -24,11 +24,23 @@ function ContactUs() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (validateForm()) {
-            setSuccessMessage('Thank you for submitting your query. Our team will get back to you via email within the next 3 working days.');
-            setForm({ fullName: '', email: '', message: '' });
+            try {
+                const response = await fetch('http://localhost:3000/contacts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(form) // Stringify the form data
+                });
+                const result = await response.json();
+                setSuccessMessage('Thank you for submitting your query. Our team will get back to you via email within the next 3 working days.');
+                setForm({ fullName: '', email: '', message: '' });
+            } catch (error) {
+                console.log('Error', error.message);
+            }
         }
     };
 
@@ -104,7 +116,7 @@ function ContactUs() {
                         </div>
                         {errors.message && <small className={styles.errorTxt}>{errors.message}</small>}
                     </div>
-                    <input type="submit" value="Submit" className={styles.formButton} disabled={Object.keys(errors).length > 0} />
+                    <input type="submit" value="Submit" className={styles.formButton} disabled={!form.fullName || !form.email || !form.message} />
                 </form>
                 {successMessage && <div className={styles.successMessage}>{successMessage}</div>}
             </div>
@@ -113,7 +125,6 @@ function ContactUs() {
 }
 
 export default ContactUs;
-
 
 
 
