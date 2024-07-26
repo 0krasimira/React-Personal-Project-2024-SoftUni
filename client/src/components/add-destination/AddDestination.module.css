@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+* {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Wrapper */
+.wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2em;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+header {
+    font-size: 24px;
+    margin-bottom: 1em;
+
+}
+
+/* Field Container */
+.field {
+    margin-bottom: 1em;
+}
+
+/* Label */
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    
+}
+
+/* Input, Textarea, and Select */
+input[type="text"],
+input[type="number"],
+input[type="url"],
+textarea,
+select {
+    width: 100%; /* Ensures consistent width */
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif; /* Ensures uniform font */
+    color: #333; /* Text color */
+    background-color: #fff; /* Background color */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's width and height */
+}
+
+/* Textarea Specific Styling */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Select Element Styling */
+select {
+    -webkit-appearance: none; /* Remove default styling for WebKit browsers */
+    -moz-appearance: none; /* Remove default styling for Firefox */
+    appearance: none; /* Remove default styling for other browsers */
+    background-color: #fff; /* Ensures consistent background */
+    color: #999; /* Ensures consistent text color */
+    padding: 0.5em;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif; /* Ensures uniform font */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Placeholder Styling for Inputs and Textareas */
+input::placeholder,
+textarea::placeholder,
+select option[value=""] {
+    color: #999; /* Light gray color for placeholders */
+    font-size: 16px; /* Consistent font size */
+    font-family: 'Arial', sans-serif; /* Consistent font family */
+}
+
+/* Submit Button Styling */
+input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.75em 1.5em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif; /* Ensures uniform font */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Error Text Styling */
+.errorTxt {
+    color: red;
+    font-size: 14px;
+    margin-top: 0.5em;
+    font-family: 'Arial', sans-serif; /* Ensures uniform font */
+}
+
+
+/* Responsive Styles */
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+    .wrapper {
+        padding: 1em;
+    }
+    
+    header {
+        font-size: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="url"],
+    textarea,
+    select {
+        font-size: 14px;
+        padding: 0.4em;
+    }
+
+    input[type="submit"] {
+        padding: 0.6em 1.2em;
+        font-size: 14px;
+    }
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .wrapper {
+        padding: 1.5em;
+    }
+    
+    header {
+        font-size: 22px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="url"],
+    textarea,
+    select {
+        font-size: 15px;
+        padding: 0.45em;
+    }
+
+    input[type="submit"] {
+        padding: 0.7em 1.3em;
+        font-size: 15px;
+    }
+}

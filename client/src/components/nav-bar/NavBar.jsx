@@ -52,16 +52,16 @@ export default function NavBar() {
                                         <li className={styles.hasChildren}>
                                             <Link to="/archaeological-sites">Archaeological Sites</Link>
                                             <ul className={styles.dropdown}>
-                                                <li><Link to="/add-site">
-                                                    <i className="fas fa-plus"></i> Add a Site
+                                                <li><Link to="/add-destination">
+                                                    <i className="fas fa-plus"></i> Add a Destination
                                                 </Link></li>
-                                                <li><Link to="/my-sites"><i className="fas fa-monument"></i> My Sites
+                                                <li><Link to="/my-sites"><i className="fas fa-monument"></i> My Destinations
                                                 </Link></li>
                                                 <li><Link to="/all-sites">
-                                                    <i className="fas fa-glasses"></i> Browse All Sites
+                                                    <i className="fas fa-glasses"></i> Browse All Destinations
                                                 </Link></li>
                                                 <li><Link to="/search-sites">
-                                                    <i className="fas fa-search"></i> Search Sites
+                                                    <i className="fas fa-search"></i> Search Destinations
                                                 </Link></li>
                                             </ul>
                                         </li>

@@ -33,8 +33,8 @@ exports.isAuth = async (req, res, next) => {
     try {
         // Extract token from Authorization header if present
         const token = req.header('Authorization') ? req.header('Authorization').replace('Bearer ', '') : null;
-        // console.log('token', token)
         if (!token) {
+            console.log('No token provided');
             throw new Error('Token not provided');
         }
 
@@ -44,21 +44,19 @@ exports.isAuth = async (req, res, next) => {
 
         // Find the user in the database
         const user = await User.findById(userId);
-        // console.log('user', user)
         if (!user) {
+            console.log('User not found');
             throw new Error('User not found');
         }
 
         req.token = token;
         req.user = user;
-        // console.log(user)
         next();
     } catch (error) {
+        console.error('Authorization error:', error.message);
         res.status(401).send({ error: 'Unauthorized' });
     }
 };
-
-
 
 
 exports.isGuest = (req, res, next) => {

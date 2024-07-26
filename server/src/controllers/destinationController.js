@@ -56,6 +56,10 @@ router.post('/add-destination', isAuth, async (req, res) => {
     }
 });
 
+
+// todo - continue from here! check why destinationData is not defined!
+
+
 // router.get('/:destinationId', async (req, res) => {
 //     const destinationId = req.params.destinationId;
 //     // console.log('Requested site ID:', siteId);

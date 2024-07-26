@@ -8,6 +8,7 @@ import ContactUs from './components/contact/ContactUs'; // Assuming you have thi
 import Footer from './components/footer/Footer';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
+import AddDestination from './components/add-destination/AddDestination';
 // import Profile from './components/profile/Profile'; // Uncomment if you have this component
 // import Logout from './components/logout/Logout'; // Uncomment if you have this component
 
@@ -23,6 +24,7 @@ function App() {
                         <Route path="/auth/login" element={<Login />} />
                         <Route path="/about-us" element={<AboutUs />} />
                         <Route path="/contact-us" element={<ContactUs />} /> {/* Added ContactUs route */}
+                        <Route path="/add-destination" element={<AddDestination />} />
                         {/* Uncomment these lines if you have these components */}
                         {/* <Route path="/profile" element={<PrivateRoute element={<Profile />} />} /> */}
                         {/* <Route path="/logout" element={<PrivateRoute element={<Logout />} />} /> */}
