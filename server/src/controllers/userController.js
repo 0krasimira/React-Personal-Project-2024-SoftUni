@@ -44,15 +44,19 @@ router.get('/login', isGuest, (req, res) => {
 });
 
 
+
 router.post('/login', isGuest, async (req, res) => {
     try {
         const { username, password } = req.body;
-        console.log('Received credentials:', { username, password }); // Add this line
-        
-        const { token, username: loggedInUsername } = await userManager.login(username, password);
-        res.json({ token, username: loggedInUsername });
+        console.log('Received credentials:', { username, password });
+
+        // Assuming login returns an object with user details
+        const { token, username: loggedInUsername, userId } = await userManager.login(username, password);
+
+        // Respond with token, username, and userId
+        res.json({ token, username: loggedInUsername, userId });
     } catch (error) {
-        console.error('Error logging user:', error.message); // Ensure you log the error message
+        console.error('Error logging user:', error.message);
         res.status(401).json({ error: 'Invalid username or password' });
     }
 });

@@ -6,26 +6,23 @@ const User = require("../models/User")
 
 
 exports.auth = async (req, res, next) => {
-    // get token
-    const token = req.cookies["token"]
-    
-    if(!token){
-        return next()
+    const token = req.cookies["token"] || req.headers.authorization?.split(' ')[1]; // Check both cookies and headers
+
+    if (!token) {
+        return next(); // Proceed without user information if no token
     }
 
-    // validate token
-try{
-    const decodedToken = await jwt.verify(token, SECRET)
-    req.user = decodedToken 
-    res.locals.isAuthenticated = true
-    res.locals.user = decodedToken
-    next()
-}catch{
-    res.clearCookie("token");
-
-}
-    
-}
+    try {
+        const decodedToken = await jwt.verify(token, SECRET);
+        req.user = decodedToken; // Attach decoded user info
+        res.locals.isAuthenticated = true;
+        res.locals.user = decodedToken;
+        next();
+    } catch (error) {
+        res.clearCookie("token"); // Clear invalid token
+        next(); // Proceed to next middleware or route handler
+    }
+};
 
 
 

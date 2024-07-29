@@ -55,8 +55,8 @@ export default function NavBar() {
                                                 <li><Link to="/add-destination">
                                                     <i className="fas fa-plus"></i> Add a Destination
                                                 </Link></li>
-                                                <li><Link to="/my-destinations"><i className="fas fa-monument"></i> My Destinations
-                                                </Link></li>
+                                                {/* <li><Link to="/my-destinations"><i className="fas fa-monument"></i> My Destinations
+                                                </Link></li> */}
                                                 <li><Link to="/all-destinations">
                                                     <i className="fas fa-glasses"></i> Browse All Destinations
                                                 </Link></li>

@@ -10,6 +10,8 @@ import Register from './components/register/Register';
 import Login from './components/login/Login';
 import AddDestination from './components/add-destination/AddDestination';
 import DestinationsList from './components/destinations-list/DestinationsList';
+import DestinationDetails from './components/destinations-details/DestinationsDetails';
+import MostPopularDestinations from './components/most-popular-destinations/MostPopularDestinations';
 // import Profile from './components/profile/Profile'; // Uncomment if you have this component
 // import Logout from './components/logout/Logout'; // Uncomment if you have this component
 
@@ -27,7 +29,8 @@ function App() {
                         <Route path="/contact-us" element={<ContactUs />} /> {/* Added ContactUs route */}
                         <Route path="/add-destination" element={<AddDestination />} />
                         <Route path="/all-destinations" element={<DestinationsList />} /> {/* Added DestinationsPage route */}
-
+                        <Route path="/destinations/:destinationId" element={<DestinationDetails />} />
+                        <Route path="/most-popular" element={<MostPopularDestinations />} />
                         {/* Uncomment these lines if you have these components */}
                         {/* <Route path="/profile" element={<PrivateRoute element={<Profile />} />} /> */}
                         {/* <Route path="/logout" element={<PrivateRoute element={<Logout />} />} /> */}

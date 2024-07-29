@@ -49,10 +49,10 @@ export default function Login() {
                 }
 
                 // Destructure token and username from the response
-                const { token, username } = data;
+                const { token, username, userId } = data;
                 
                 // Use the login function from context
-                login(token, username);
+                login(token, username, userId);
 
                 alert('Login successful!');
                 navigate('/');

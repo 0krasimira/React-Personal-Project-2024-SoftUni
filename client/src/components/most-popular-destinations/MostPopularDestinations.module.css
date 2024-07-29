@@ -1,0 +1,95 @@
+/* Sidebar styling */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+
+.sidebar {
+    margin-left: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mostPopular {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mostPopular h2 {
+    margin: 0 0 20px;
+    font-size: 1.5rem;
+    color: #333;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.popularSite {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.siteInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.siteDetails h3 {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+    color: #333;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.siteDetails p {
+    margin: 0;
+    color: #666;
+}
+
+.imageContainer {
+    margin-top: 10px;
+    position: relative;
+}
+
+.siteImage {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow to images for depth */
+}
+
+/* Button to see more popular sites */
+.seeMoreButton {
+    display: block;
+    width: 100%; /* Make button take full width of the container */
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px; /* Space above the button */
+    align-content: center;
+}
+
+.seeMoreButton:hover {
+    background-color: #0056b3;
+}
+
+/* Link to see all popular sites */
+.seeAllSites {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.seeAllSites:hover {
+    text-decoration: underline;
+}
+
+
+/*todo check if i can position the button better*/

@@ -1,11 +1,15 @@
 /* DestinationsList.module.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
 .container {
     padding: 20px;
     background-color: #f2e1e9; /* Light background color */
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .header {
@@ -86,3 +90,21 @@
     background-color: #7c0032;
 }
 
+
+.noDestinations {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 66vh; 
+    font-size: 5em; 
+    color: #333; 
+    text-align: center;
+    font-weight: bold; 
+    margin: 0; 
+    box-sizing: border-box; 
+}
+
+.authorName {
+    color: #d94fd9; 
+    font-weight: bold;
+}

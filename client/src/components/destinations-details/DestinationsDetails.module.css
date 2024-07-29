@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+/* Container for the main content and sidebar */
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Details section takes 2/3 of the space */
+.details {
+  font-family: 'Josefin Sans', sans-serif;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Sidebar takes 1/3 of the space */
+.sidebar {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Image styling */
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Info styling */
+.info p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Title styling */
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Loading and error styling */
+.loading, .error {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.error {
+  color: #ff0000;
+}
+
+/* No popular sites message */
+.noPopularSites {
+  color: #666;
+  font-style: italic;
+}
+
+/* See all sites link */
+.seeAllSites {
+  display: inline-block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.seeAllSites:hover {
+  text-decoration: underline;
+}
+
+/* Comments Section */
+.commentsSection {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.commentsTitle {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.commentInput {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.commentButton {
+  align-self: flex-end;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.commentButton:hover {
+  background-color: #0056b3;
+}
+
+.commentsList {
+  margin-top: 20px;
+}
+
+.comment {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.commentAuthor {
+  font-size: 14px;
+  color: #d94fd9; 
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.commentTime {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.seeAllButton {
+  background-color: #5bc0de;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.seeAllButton:hover {
+  background-color: #31b0d5;
+}
+
+/* Like button styling */
+.likesSection {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.likeButton {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.likeButton:hover {
+  background-color: #c9302c;
+}
+
+.likeCount {
+  margin-left: 10px;
+}
+
+/* Ensure buttons inside the sidebar are properly styled */
+.sidebar button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+}
+
+.sidebar button:hover {
+  background-color: #0056b3;
+}
+
+.showMoreButton, .showLessButton {
+    background: none;
+    color: #007bff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.showMoreButton:hover, .showLessButton:hover {
+    color: #0056b3;
+}
+
+.authorTag {
+    color: #007bff; /* or any color to distinguish the tag */
+    font-size: 12px;
+    margin-left: 5px;
+}

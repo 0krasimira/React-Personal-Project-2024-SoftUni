@@ -18,11 +18,13 @@ exports.create = async (userId, destinationData) => {
 };
 
 
-exports.getAll = () => Destination.find()
+exports.getAll = () => {
+  return Destination.find().populate('author', 'username');
+}
 
-exports.getOne = (destinationId) => Destination.findById(destinationId)
 
-exports.getOneWithDetails = (destinationId) => this.getOne(destinationId).populate('author')
+exports.getOne = (destinationId) => Destination.findById(destinationId).populate('author', 'username').populate('comments.author', 'username');
+
 
 exports.edit = (destinationId, destinationData) => Site.findByIdAndUpdate(destinationId, destinationData, { runValidators: true })
 

@@ -12,7 +12,7 @@ const destinationSchema = new mongoose.Schema({
             required: [true, 'All fields are mandatory'],
         },
         yearOfDiscovery: {
-            type: Number,
+            type: mongoose.Schema.Types.Mixed,
             required: [true, 'All fields are mandatory'],
         },
         prevInvestigations: {

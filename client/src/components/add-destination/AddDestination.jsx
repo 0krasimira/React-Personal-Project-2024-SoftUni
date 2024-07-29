@@ -18,10 +18,10 @@ export default function AddDestination() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Clear previous errors
     setErrors({});
-  
+
     // Basic validation
     const newErrors = {};
     if (!form.name) newErrors.name = 'Destination name is required.';
@@ -29,15 +29,15 @@ export default function AddDestination() {
     if (!form.yearOfDiscovery) newErrors.yearOfDiscovery = 'Year of discovery is required.';
     if (!form.prevInvestigations) newErrors.prevInvestigations = 'Previous investigations are required.';
     if (!form.imageUrl) newErrors.imageUrl = 'Image URL is required.';
-  
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-  
+
     try {
       const token = localStorage.getItem('token'); // Adjust according to your token storage
-  
+
       const response = await fetch('http://localhost:3000/add-destination', {
         method: 'POST',
         headers: {
@@ -46,15 +46,15 @@ export default function AddDestination() {
         },
         body: JSON.stringify(form),
       });
-  
+
       const data = await response.json();
-  
+
       console.log('data', data)
       if (!response.ok) {
         // If the response is not OK, handle the error
         throw new Error(data.error || 'Failed to add destination.');
       }
-  
+
       // Handle successful form submission
       alert('Destination added successfully!');
       setForm({
@@ -117,8 +117,11 @@ export default function AddDestination() {
             <option value="" disabled>Select a year</option>
             {Array.from({ length: new Date().getFullYear() - 1878 + 1 }, (_, i) => 1878 + i)
               .reverse()
-              .map(year => (
-                <option key={year} value={year}>{year}</option>
+              .map((year, index) => (
+                <React.Fragment key={year}>
+                  {index === 0 && <option value="Unknown">Unknown</option>}
+                  <option value={year}>{year}</option>
+                </React.Fragment>
               ))
             }
           </select>

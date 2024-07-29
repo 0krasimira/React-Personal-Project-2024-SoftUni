@@ -2,6 +2,7 @@ const router = require("express").Router()
 const destinationManager = require('../managers/destinationManager')
 const { isAuth, auth, isOwner } = require("../middlewares/authMiddleware")
 const Destination = require('../models/Destination')
+const User = require("../models/User")
 const getErrorMessage = require('../utils/errorUtils')
 
 router.use((req, res, next) => {
@@ -70,23 +71,62 @@ router.post('/add-destination', isAuth, async (req, res) => {
 
 
 
-// router.get('/:destinationId', async (req, res) => {
-//     const destinationId = req.params.destinationId;
-//     // console.log('Requested site ID:', siteId);
-//     try {
-//         const oneDestination = await destinationManager.getOneWithDetails(destinationId);
+router.get('/destinations/:destinationId', async (req, res) => {
+    const destinationId = req.params.destinationId;
+    // console.log('Requested site ID:', siteId);
+    try {
+        const oneDestination = await destinationManager.getOne(destinationId);
 
-//         if (!oneDestination) {
-//             return res.status(404).json({ message: 'Destination not found' });
-//         }
-//         return res.json(oneDestination);
-//     } catch (error) {
-//         console.error('Error fetching one destination:', error);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// });
+        if (!oneDestination) {
+            return res.status(404).json({ message: 'Destination not found' });
+        }
+        return res.json(oneDestination);
+    } catch (error) {
+        console.error('Error fetching one destination:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
+router.post('/destinations/:id/comments', async (req, res) => {
+    try {
+        const { text } = req.body;
+        const commentAuthorId = req.user?._id; // Use req.user if you're setting it in auth middleware
 
+        if (!text || !commentAuthorId) {
+            return res.status(400).json({ error: 'Text and authorId are required' });
+        }
+
+        const destination = await Destination.findById(req.params.id);
+        if (!destination) {
+            return res.status(404).json({ error: 'Destination not found' });
+        }
+
+        // Create the new comment
+        const newComment = {
+            text,
+            author: commentAuthorId, // Set author to the userId
+            createdAt: new Date()
+        };
+
+        // Add the comment to the destination
+        destination.comments.push(newComment);
+        await destination.save();
+
+        // Optionally, populate comment author details if needed
+        const populatedUser = await User.findById(commentAuthorId).select('username');
+        
+        // Update the comment to include author details
+        newComment.author = {
+            _id: commentAuthorId,
+            username: populatedUser.username
+        };
+
+        res.status(201).json({ message: 'Comment added', comment: newComment });
+    } catch (error) {
+        console.error('Error adding comment:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 
 // router.get("/paintings/:paintingId/edit", isAuth, isOwner, async (req, res) => {
