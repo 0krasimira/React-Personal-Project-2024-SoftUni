@@ -1,8 +1,8 @@
 const jwt = require("../lib/jwt")
 const { SECRET } = require("../config/config")
 const User = require("../models/User")
-// const User = require("../models/User")
-// const sitesManager = require('../managers/sitesManager')
+const destinationManager = require('../managers/destinationManager');
+const Destination = require("../models/Destination");
 
 
 exports.auth = async (req, res, next) => {
@@ -32,7 +32,7 @@ exports.isAuth = async (req, res, next) => {
         const token = req.header('Authorization') ? req.header('Authorization').replace('Bearer ', '') : null;
         if (!token) {
             console.log('No token provided');
-            throw new Error('Token not provided');
+            return res.status(401).json({ error: 'Token not provided' });
         }
 
         // Verify token
@@ -43,7 +43,7 @@ exports.isAuth = async (req, res, next) => {
         const user = await User.findById(userId);
         if (!user) {
             console.log('User not found');
-            throw new Error('User not found');
+            return res.status(401).json({ error: 'User not found' });
         }
 
         req.token = token;
@@ -51,9 +51,10 @@ exports.isAuth = async (req, res, next) => {
         next();
     } catch (error) {
         console.error('Authorization error:', error.message);
-        res.status(401).send({ error: 'Unauthorized' });
+        res.status(401).json({ error: 'Unauthorized' });
     }
 };
+
 
 
 exports.isGuest = (req, res, next) => {
@@ -64,8 +65,22 @@ exports.isGuest = (req, res, next) => {
     next()
 }
 
-// exports.isOwner = async (req, res, next) => {
-//     const site = await sitesManager.getOne()
+exports.isOwner = async (req, res, next) => {
+    try {
+        const destinationId = req.params.destinationId;
+        const destination = await Destination.findById(destinationId);
 
-//     next()
-// }
+        if (!destination) {
+            return res.status(404).json({ error: 'Destination not found' });
+        }
+
+        if (destination.author.toString() !== req.user._id.toString()) {
+            return res.status(403).json({ error: 'Forbidden: You are not the owner of this destination' });
+        }
+
+        next();
+    } catch (error) {
+        console.error('Owner check error:', error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};

@@ -87,7 +87,7 @@ router.get('/destinations/:destinationId', async (req, res) => {
     }
 });
 
-router.post('/destinations/:id/comments', async (req, res) => {
+router.post('/destinations/:destinationId/comments', async (req, res) => { // it used to be /destinations/:id/comments here
     try {
         const { text } = req.body;
         const commentAuthorId = req.user?._id; // Use req.user if you're setting it in auth middleware
@@ -129,31 +129,31 @@ router.post('/destinations/:id/comments', async (req, res) => {
 });
 
 
-// router.get("/paintings/:paintingId/edit", isAuth, isOwner, async (req, res) => {
-//     try {
-//         const paintingId = req.params.paintingId
-//         console.log('this is the painting im trying to edit', paintingId)
-//         const painting = await paintingManager.getOneWithDetails(paintingId)
-//         res.status(200).json(painting)
-//     } catch (err) {
-//         console.error('Error fetching painting:', err);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// })
+router.get("/destinations/:destinationId/edit", isAuth, isOwner, async (req, res) => {
+    try {
+        const destinationId = req.params.destinationId
+        console.log('this is the destination im trying to edit', destinationId)
+        const destination = await destinationManager.getOneWithDetails(destinationId)
+        res.status(200).json(destination)
+    } catch (err) {
+        console.error('Error fetching destination:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
 
 
-// router.post('/paintings/:paintingId/edit', isAuth, isOwner, async (req, res) => {
-//     const paintingData = req.body;
-//     try {
-//         paintingData.author = req.user._id; 
-//         const updatedPainting = await paintingManager.edit(req.params.paintingId, paintingData);
-//         console.log(updatedPainting)
-//         res.status(200).json(updatedPainting);
-//     } catch (error) {
-//         console.error('Error updating painting:', error);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// });
+router.post('/destinations/:destinationId/edit', isAuth, isOwner, async (req, res) => {
+    const destinationData = req.body;
+    try {
+        destinationData.author = req.user._id; 
+        const updatedDestination = await destinationManager.edit(req.params.destinationId, destinationData);
+        console.log(updatedDestination)
+        res.status(200).json(updatedDestination);
+    } catch (error) {
+        console.error('Error updating destination:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 
 // router.delete('/paintings/:id/delete', async (req, res) => {

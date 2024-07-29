@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './AddDestination.module.css'; // Ensure you have the correct path
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import styles from './EditDestination.module.css'; 
 
-export default function AddDestination() {
+export default function EditDestination() {
+  const { destinationId } = useParams(); 
+  const navigate = useNavigate(); 
+
   const [form, setForm] = useState({
     name: '',
     location: '',
@@ -12,7 +15,23 @@ export default function AddDestination() {
   });
 
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  useEffect(() => {
+    const fetchDestination = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/destinations/${destinationId}`);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Failed to fetch destination details');
+
+        setForm(data); // Prepopulate the form with existing data
+      } catch (error) {
+        console.error('Error:', error.message);
+        alert(`Error: ${error.message}`);
+      }
+    };
+
+    fetchDestination();
+  }, [destinationId]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -38,33 +57,23 @@ export default function AddDestination() {
     }
 
     try {
-      const token = localStorage.getItem('token'); 
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('No token found.');
 
-      const response = await fetch('http://localhost:3000/add-destination', {
+      const response = await fetch(`http://localhost:3000/destinations/${destinationId}/edit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, 
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(form),
       });
 
       const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Failed to update destination.');
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to add destination.');
-      }
-
-      setForm({
-        name: '',
-        location: '',
-        yearOfDiscovery: '',
-        prevInvestigations: '',
-        imageUrl: '',
-      });
-
-      // Redirect to the all-destinations page
-      navigate('/all-destinations');
+      alert('Destination updated successfully!');
+      navigate(`/destinations/${destinationId}`);
     } catch (error) {
       console.error('Error:', error.message);
       alert(`Error: ${error.message}`);
@@ -73,7 +82,7 @@ export default function AddDestination() {
 
   return (
     <div className={styles.wrapper}>
-      <header>Add New Destination</header>
+      <header>Edit Destination</header>
       <form onSubmit={handleSubmit}>
         <div className={styles.field}>
           <label htmlFor="name">Destination Name</label>
@@ -153,12 +162,8 @@ export default function AddDestination() {
           {errors.imageUrl && <div className={styles.errorTxt}>{errors.imageUrl}</div>}
         </div>
 
-        <input type="submit" value="Add Destination" className={styles.submitButton} />
+        <input type="submit" value="Update Destination" className={styles.submitButton} />
       </form>
     </div>
   );
 }
-
-
-
-//todo - redirect to destinations list once added successfully

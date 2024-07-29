@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
 .container {
-    padding: 20px;
+    padding: 20px 20px 80px 20px;
     background-color: #f2e1e9; /* Light background color */
     display: flex;
     flex-direction: column;
@@ -24,6 +24,7 @@
     gap: 20px;
     width: 100%;
     max-width: 1200px; /* Max width for larger screens */
+    
 }
 
 .card {

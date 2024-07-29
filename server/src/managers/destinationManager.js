@@ -26,7 +26,7 @@ exports.getAll = () => {
 exports.getOne = (destinationId) => Destination.findById(destinationId).populate('author', 'username').populate('comments.author', 'username');
 
 
-exports.edit = (destinationId, destinationData) => Site.findByIdAndUpdate(destinationId, destinationData, { runValidators: true })
+exports.edit = (destinationId, destinationData) => Destination.findByIdAndUpdate(destinationId, destinationData, { runValidators: true })
 
 exports.getMostPopularDestinations = async () => {
     try {

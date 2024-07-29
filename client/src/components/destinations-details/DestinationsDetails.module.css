@@ -225,3 +225,46 @@
     font-size: 12px;
     margin-left: 5px;
 }
+
+
+/* DestinationsDetails.module.css */
+
+.actions {
+    display: flex;
+    gap: 15px; /* Increased space between buttons */
+    margin-top: 20px; /* Space above the buttons */
+}
+
+.button {
+    padding: 15px 25px; /* Increased padding for larger buttons */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* More rounded corners */
+    font-size: 18px; /* Larger font size */
+    font-weight: bold; /* Make text bold */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+    text-align: center; /* Center text inside the button */
+    width: 150px; /* Fixed width for consistency */
+}
+
+.button:hover {
+    opacity: 0.9; /* Slightly reduce opacity on hover */
+}
+
+.editButton {
+    background-color: #4CAF50; /* Green background for Edit button */
+    color: white; /* White text color */
+}
+
+.editButton:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.deleteButton {
+    background-color: #f44336; /* Red background for Delete button */
+    color: white; /* White text color */
+}
+
+.deleteButton:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}

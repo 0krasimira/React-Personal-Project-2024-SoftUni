@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/authContext';
 import MostPopularDestinations from '../most-popular-destinations/MostPopularDestinations';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'; // Import the thumbs-up icon
 import styles from './DestinationsDetails.module.css';
 
 export default function DestinationsDetails() {
@@ -13,6 +15,7 @@ export default function DestinationsDetails() {
     const [comments, setComments] = useState([]);
     const [showAllComments, setShowAllComments] = useState(false);
     const [expandedComments, setExpandedComments] = useState({});
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
         const fetchDestination = async () => {
@@ -88,6 +91,30 @@ export default function DestinationsDetails() {
         }
     };
 
+    const handleEdit = () => {
+        navigate(`/destinations/${destinationId}/edit`); // Redirect to the edit page
+    };
+
+    const handleDelete = async () => {
+        if (!window.confirm('Are you sure you want to delete this destination?')) return;
+
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch(`http://localhost:3000/destinations/${destinationId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || 'Failed to delete destination');
+            alert('Destination deleted successfully!');
+            navigate('/destinations'); // Redirect to the destinations list
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
     const formatTime = (date) => {
         const now = new Date();
         const commentDate = new Date(date);
@@ -154,12 +181,21 @@ export default function DestinationsDetails() {
                     <p><strong>Previous Investigations:</strong> {destination.prevInvestigations}</p>
                 </div>
 
+                {/* Conditionally render edit and delete buttons */}
+                {destination.author?._id === userId && (
+                    <div className={styles.actions}>
+                    <button onClick={handleEdit} className={`${styles.button} ${styles.editButton}`}>Edit</button>
+                    <button onClick={handleDelete} className={`${styles.button} ${styles.deleteButton}`}>Delete</button>
+                </div>
+                )}
+
                 <div className={styles.likesSection}>
                     <button
                         className={styles.likeButton}
                         onClick={handleLike}
                     >
-                        {destination.likedBy?.includes(userId) ? 'Unlike' : 'Like'}
+                        <FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: '8px' }} />
+                        {destination.likedBy?.includes(userId) ? 'Unlike' : 'Give it a like!'}
                     </button>
                     <span className={styles.likeCount}>{destination.likes?.length || 0} Likes</span>
                 </div>
@@ -177,36 +213,35 @@ export default function DestinationsDetails() {
                         <button type="submit" className={styles.commentButton}>Post Comment</button>
                     </form>
                     <div className={styles.commentsList}>
-    {displayedComments.length === 0 ? (
-        <p>No comments yet. Be the first person to add a comment.</p>
-    ) : (
-        displayedComments.map((comment, index) => (
-            <div key={comment._id || `comment-${index}`} className={styles.comment}>
-                <div className={styles.commentText}>
-                    {truncateText(comment.text, comment._id || `comment-${index}`)}
-                </div>
-                <p className={styles.commentAuthor}>
-                    <strong>
-                        {comment.author?.username || 'Anonymous'}
-                        {comment.author?._id === destination.author?._id && (
-                            <span className={styles.authorTag}> Author</span>
+                        {displayedComments.length === 0 ? (
+                            <p>No comments yet. Be the first person to add a comment.</p>
+                        ) : (
+                            displayedComments.map((comment, index) => (
+                                <div key={comment._id || `comment-${index}`} className={styles.comment}>
+                                    <div className={styles.commentText}>
+                                        {truncateText(comment.text, comment._id || `comment-${index}`)}
+                                    </div>
+                                    <p className={styles.commentAuthor}>
+                                        <strong>
+                                            {comment.author?.username || 'Anonymous'}
+                                            {comment.author?._id === destination.author?._id && (
+                                                <span className={styles.authorTag}> Author</span>
+                                            )}
+                                        </strong>
+                                    </p>
+                                    <p className={styles.commentTime}>{formatTime(comment.createdAt)}</p>
+                                </div>
+                            ))
                         )}
-                    </strong>
-                </p>
-                <p className={styles.commentTime}>{formatTime(comment.createdAt)}</p>
-            </div>
-        ))
-    )}
-    {comments.length > 3 && (
-        <button
-            className={styles.seeAllButton}
-            onClick={() => setShowAllComments(!showAllComments)}
-        >
-            {showAllComments ? 'Show Less' : 'See All Comments'}
-        </button>
-    )}
-</div>
-
+                        {comments.length > 3 && (
+                            <button
+                                className={styles.seeAllButton}
+                                onClick={() => setShowAllComments(!showAllComments)}
+                            >
+                                {showAllComments ? 'Show Less' : 'See All Comments'}
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
             <aside className={styles.sidebar}>
@@ -215,6 +250,3 @@ export default function DestinationsDetails() {
         </div>
     );
 }
-
-
-// todo continue from here. check why author shows as anonymous upon refresh. and address the key error.
