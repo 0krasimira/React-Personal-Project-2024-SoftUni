@@ -279,3 +279,8 @@
 .destinationsItem {
     margin-bottom: 20px; /* Add space between items */
 }
+
+.postedBy {
+    color: #333;
+    display: inline
+}

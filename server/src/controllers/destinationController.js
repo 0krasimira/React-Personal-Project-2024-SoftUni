@@ -111,7 +111,7 @@ router.get('/destinations/:destinationId', async (req, res) => {
     }
 });
 
-router.post('/destinations/:destinationId/comments', async (req, res) => { // it used to be /destinations/:id/comments here
+router.post('/destinations/:id/comments', async (req, res) => { // it used to be /destinations/:id/comments here
     try {
         const { text } = req.body;
         const commentAuthorId = req.user?._id; // Use req.user if you're setting it in auth middleware

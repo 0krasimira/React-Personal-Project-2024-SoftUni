@@ -234,7 +234,7 @@ export default function DestinationsDetails() {
                                         {truncateText(comment.text, comment._id || `comment-${index}`)}
                                     </div>
                                     <p className={styles.commentAuthor}>
-                                        <strong>
+                                        <strong> <p className={styles.postedBy}>posted by: {' '}</p> 
                                             {comment.author?.username || 'Anonymous'}
                                             {comment.author?._id === destination.author?._id && (
                                                 <span className={styles.authorTag}> Author</span>
