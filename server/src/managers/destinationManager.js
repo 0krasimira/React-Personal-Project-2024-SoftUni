@@ -18,10 +18,16 @@ exports.create = async (userId, destinationData) => {
 };
 
 
-exports.getAll = () => {
-  return Destination.find().populate('author', 'username');
-}
+exports.getAll = (skip = 0, limit = 6) => {
+  return Destination.find()
+    .skip(skip) // Skip the number of documents specified by `skip`
+    .limit(limit) // Limit the number of documents returned to `limit`
+    .populate('author', 'username'); // Populate author field with username
+};
 
+exports.countAll = () => {
+  return Destination.countDocuments();
+}
 
 exports.getOne = (destinationId) => Destination.findById(destinationId).populate('author', 'username').populate('comments.author', 'username');
 

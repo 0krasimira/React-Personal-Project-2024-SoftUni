@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Adjusted height to fit content */
     font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -24,7 +24,6 @@
     gap: 20px;
     width: 100%;
     max-width: 1200px; /* Max width for larger screens */
-    
 }
 
 .card {
@@ -65,8 +64,8 @@
     color: #999;
 }
 
-.prevInvestigations {
-    font-size: 12px;
+.auth {
+    font-size: 14px;
     color: #333;
 }
 
@@ -91,7 +90,6 @@
     background-color: #7c0032;
 }
 
-
 .noDestinations {
     display: flex;
     align-items: center;
@@ -108,4 +106,39 @@
 .authorName {
     color: #d94fd9; 
     font-weight: bold;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pageButton {
+    background-color: #653146;
+    color: #fff;
+    border: 1px solid #a0496c;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+}
+
+.pageButton:hover {
+    background-color: #45041e;
+}
+
+.pageButton:disabled {
+    background-color: #ddd;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.pageInfo {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin: 0 10px;
 }

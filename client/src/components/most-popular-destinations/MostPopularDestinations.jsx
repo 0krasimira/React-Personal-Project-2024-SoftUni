@@ -48,7 +48,7 @@ export default function MostPopularDestinations() {
         ) : (
           <p>No popular sites available.</p>
         )}
-        <Link to="/all-sites" className={styles.seeAllSites}>See All Destinations</Link>
+        <Link to="/all-destinations" className={styles.seeAllSites}>See All Destinations</Link>
       </div>
     </aside>
   );

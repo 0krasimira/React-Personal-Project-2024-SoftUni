@@ -1,0 +1,25 @@
+/* App.css */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+.main-content {
+    flex: 1; /* This will make sure the content area expands to fill available space */
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.2em;
+    border-top: 1px solid #444;
+    width: 100%;
+}

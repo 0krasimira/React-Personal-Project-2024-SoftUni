@@ -1,3 +1,4 @@
+/* Footer.module.css */
 .footer {
     background-color: #333;
     color: #fff;
@@ -5,7 +6,5 @@
     padding: 10px;
     font-size: 1.2em;
     border-top: 1px solid #444;
-    position: relative; /* Ensures it's positioned correctly */
-    bottom: 0;
     width: 100%;
 }

@@ -15,6 +15,7 @@ export default function Login() {
     const [errors, setErrors] = useState({
         username: '',
         password: '',
+        server: '', // New state for server-side errors
     });
 
     const handleChange = (e) => {
@@ -23,7 +24,7 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrors({ username: '', password: '' });
+        setErrors({ username: '', password: '', server: '' });
 
         const newErrors = {};
         if (!form.username) newErrors.username = 'Username is required';
@@ -45,18 +46,26 @@ export default function Login() {
 
             const data = await response.json();
             if (!response.ok) {
-                throw new Error(data.error || 'Login failed');
+                // Set server-side error message
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    server: data.error || 'Login failed',
+                }));
+                return;
             }
 
             // Destructure token and username from the response
             const { token, username, userId } = data;
-            
+
             // Use the login function from context
             login(token, username, userId);
             navigate('/');
         } catch (error) {
             console.error('Error:', error.message);
-            alert(`Error: ${error.message}`);
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                server: 'An unexpected error occurred. Please try again.',
+            }));
         }
     };
 
@@ -94,6 +103,7 @@ export default function Login() {
                     </div>
                     {errors.password && <div className={styles.errorTxt}>{errors.password}</div>}
                 </div>
+                {errors.server && <div className={styles.errorTxt}>{errors.server}</div>}
                 <input type="submit" value="Login" className={styles.submitButton} />
             </form>
             <div className={styles.signTxt}>
