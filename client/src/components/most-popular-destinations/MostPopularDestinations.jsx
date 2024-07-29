@@ -36,7 +36,7 @@ export default function MostPopularDestinations() {
                   <h3>{site.name}</h3>
                   <p>Date Added: {new Date(site.createdAt).toLocaleDateString()}</p>
                   <p>Likes: {site.likes?.length}</p>
-                  <p>Added by: {site.author.username}</p>
+                  <p>Added by: <span className={styles.addedBy}>{site.author.username}</span></p>
                 </div>
                 <div className={styles.imageContainer}>
                   <img src={site.imageUrl} alt="Site Image" className={styles.siteImage} />

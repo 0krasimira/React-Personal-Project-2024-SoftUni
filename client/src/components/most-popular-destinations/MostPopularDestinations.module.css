@@ -91,5 +91,11 @@
     text-decoration: underline;
 }
 
-
+.addedBy {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    color: #d94fd9; 
+    font-weight: bold;
+    margin-top: 5px;
+}
 /*todo check if i can position the button better*/
