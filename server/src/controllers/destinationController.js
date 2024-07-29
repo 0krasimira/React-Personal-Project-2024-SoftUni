@@ -156,21 +156,23 @@ router.post('/destinations/:destinationId/edit', isAuth, isOwner, async (req, re
 });
 
 
-// router.delete('/paintings/:id/delete', async (req, res) => {
-//     try {
-//         const paintingId = req.params.id;
-//         // Check if the painting exists
-//         const painting = await Painting.findById(paintingId);
-//         if (!painting) {
-//             return res.status(404).json({ error: 'Painting not found' });
-//         }
-//         await Painting.findByIdAndDelete(paintingId);
-//         return res.status(204).send(); // No content
-//     } catch (error) {
-//         console.error(error);
-//         return res.status(500).json({ error: 'Server error' });
-//     }
-// });
+router.delete('/destinations/:destinationId/delete', isAuth, isOwner, async (req, res) => {
+    try {
+        const destinationId = req.params.destinationId; 
+        // Check if the destination exists
+        const destination = await Destination.findById(destinationId);
+        if (!destination) {
+            return res.status(404).json({ error: 'Destination not found' });
+        }
+        await Destination.findByIdAndDelete(destinationId);
+        return res.status(204).send(); // No content
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Server error' });
+    }
+});
+
+
 
 // router.get('/search', async (req, res) => {
 //     try {

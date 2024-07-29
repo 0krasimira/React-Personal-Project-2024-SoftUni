@@ -53,8 +53,6 @@ export default function Login() {
             
             // Use the login function from context
             login(token, username, userId);
-
-            alert('Login successful!');
             navigate('/');
         } catch (error) {
             console.error('Error:', error.message);

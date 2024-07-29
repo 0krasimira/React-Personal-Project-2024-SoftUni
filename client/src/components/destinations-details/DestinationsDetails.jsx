@@ -97,23 +97,35 @@ export default function DestinationsDetails() {
 
     const handleDelete = async () => {
         if (!window.confirm('Are you sure you want to delete this destination?')) return;
-
+    
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:3000/destinations/${destinationId}`, {
+            const response = await fetch(`http://localhost:3000/destinations/${destinationId}/delete`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
                 },
             });
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.error || 'Failed to delete destination');
-            alert('Destination deleted successfully!');
-            navigate('/destinations'); // Redirect to the destinations list
+    
+            if (response.ok) {
+                alert('Destination deleted successfully!');
+                navigate('/all-destinations'); // Redirect to the destinations list
+            } else {
+                const contentType = response.headers.get('content-type');
+                let errorMessage = 'Failed to delete destination';
+    
+                if (contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    errorMessage = data.error || errorMessage;
+                }
+    
+                throw new Error(errorMessage);
+            }
         } catch (err) {
             setError(err.message);
         }
     };
+    
 
     const formatTime = (date) => {
         const now = new Date();

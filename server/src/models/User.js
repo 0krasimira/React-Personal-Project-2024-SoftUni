@@ -18,9 +18,9 @@ const userSchema = new mongoose.Schema({
         unique: true, 
         minLength: [6, "Your username should be at least 6 characters in length."]
     },
-    sites: [{
+    destinations: [{
         type: mongoose.Types.ObjectId,
-        ref: 'Site'
+        ref: 'Destination'
     }],
 });
 

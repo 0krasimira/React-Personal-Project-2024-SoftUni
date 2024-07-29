@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Register.module.css';
 
 export default function Register() {
@@ -27,8 +27,16 @@ export default function Register() {
     e.preventDefault();
     setErrors({ email: '', username: '', password: '', repeatPassword: '' });
 
-    if (form.password !== form.repeatPassword) {
-      setErrors((prev) => ({ ...prev, repeatPassword: "Passwords do not match" }));
+    const newErrors = {};
+
+    // Basic validation
+    if (!form.email) newErrors.email = 'Email is required.';
+    if (!form.username) newErrors.username = 'Username is required.';
+    if (!form.password) newErrors.password = 'Password is required.';
+    if (form.password !== form.repeatPassword) newErrors.repeatPassword = 'Passwords do not match.';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
 
@@ -55,7 +63,6 @@ export default function Register() {
           throw new Error(data.error || 'Registration was unsuccessful. Please, try again.');
         }
       } else {
-        alert('Registration successful!');
         navigate('/auth/login');
         setForm({ email: '', username: '', password: '', repeatPassword: '' });
       }
@@ -79,7 +86,7 @@ export default function Register() {
               placeholder="Email Address"
               value={form.email}
               onChange={handleChange}
-              required
+              className={styles.inputField} 
             />
             {errors.email && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
@@ -94,7 +101,7 @@ export default function Register() {
               placeholder="Username"
               value={form.username}
               onChange={handleChange}
-              required
+              className={styles.inputField} 
             />
             {errors.username && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
@@ -109,7 +116,7 @@ export default function Register() {
               placeholder="Password"
               value={form.password}
               onChange={handleChange}
-              required
+              className={styles.inputField} 
             />
             {errors.password && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
@@ -124,13 +131,13 @@ export default function Register() {
               placeholder="Confirm Password"
               value={form.repeatPassword}
               onChange={handleChange}
-              required
+              className={styles.inputField} 
             />
             {errors.repeatPassword && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
           {errors.repeatPassword && <div className={styles.errorTxt}>{errors.repeatPassword}</div>}
         </div>
-        <input type="submit" value="Register" />
+        <input type="submit" value="Register" className={styles.submitButton} />
       </form>
       <div className={styles.signTxt}>
         Already a member? <Link to="/auth/login">Login now</Link>
@@ -138,3 +145,4 @@ export default function Register() {
     </div>
   );
 }
+
