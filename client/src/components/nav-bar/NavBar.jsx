@@ -50,7 +50,7 @@ export default function NavBar() {
                                             </ul>
                                         </li>
                                         <li className={styles.hasChildren}>
-                                            <Link to="/archaeological-sites">Archaeological Sites</Link>
+                                            <Link to="/all-destinations">Archaeological Sites</Link>
                                             <ul className={styles.dropdown}>
                                                 <li><Link to="/add-destination">
                                                     <i className="fas fa-plus"></i> Add a Destination

@@ -46,3 +46,64 @@ exports.getMostPopularDestinations = async () => {
       throw error;
     }
   };
+
+  
+  exports.likeDestination = async (destinationId, userId) => {
+    try {
+        const destination = await Destination.findById(destinationId);
+        if (!destination) {
+            throw new Error('Destination not found');
+        }
+
+        // Check if the user has already liked the destination
+        if (destination.likes.includes(userId)) {
+            throw new Error('You have already liked this destination');
+        }
+
+        // Add the user's ID to the likes array
+        destination.likes.push(userId);
+        
+        // Update the user document to add the destination to likedDestinations
+        await User.findByIdAndUpdate(userId, {
+            $addToSet: { likedDestinations: destinationId }
+        });
+
+        // Save the updated destination
+        await destination.save();
+        return destination;
+    } catch (error) {
+        throw new Error(`Failed to like destination: ${error.message}`);
+    }
+};
+
+exports.unlikeDestination = async (destinationId, userId) => {
+  try {
+      // Find the destination by ID
+      const destination = await Destination.findById(destinationId);
+      if (!destination) {
+          throw new Error('Destination not found');
+      }
+
+      // Check if the user has liked the destination
+      if (!destination.likes.includes(userId)) {
+          throw new Error('You have not liked this destination');
+      }
+
+      // Remove the user's ID from the likes array
+      destination.likes.pull(userId);
+
+      // Update the user's likedDestinations array without loading the full user object
+      await User.findByIdAndUpdate(userId, {
+          $pull: { likedDestinations: destinationId }
+      });
+
+      // Save the updated destination
+      await destination.save();
+
+      return destination;
+  } catch (error) {
+      throw new Error(`Failed to unlike destination: ${error.message}`);
+  }
+};
+
+  

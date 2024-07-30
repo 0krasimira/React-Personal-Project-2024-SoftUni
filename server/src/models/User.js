@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'Destination'
     }],
+
+    likedDestinations: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Destination'
+    }]
 });
 
 userSchema.pre('save', async function(next) {

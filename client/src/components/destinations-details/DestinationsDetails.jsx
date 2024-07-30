@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/authContext';
 import MostPopularDestinations from '../most-popular-destinations/MostPopularDestinations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'; // Import the thumbs-up icon
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import styles from './DestinationsDetails.module.css';
 
 export default function DestinationsDetails() {
@@ -15,7 +15,9 @@ export default function DestinationsDetails() {
     const [comments, setComments] = useState([]);
     const [showAllComments, setShowAllComments] = useState(false);
     const [expandedComments, setExpandedComments] = useState({});
-    const navigate = useNavigate(); // Initialize useNavigate
+    const [isLiked, setIsLiked] = useState(false); // Track if the destination is liked by the user
+    const [likeCount, setLikeCount] = useState(0); // Track the total number of likes
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchDestination = async () => {
@@ -24,10 +26,11 @@ export default function DestinationsDetails() {
                 const data = await response.json();
                 if (!response.ok) throw new Error(data.error || 'Failed to fetch destination details');
 
-                // Check if the author data is present
                 if (data && data.author) {
                     setDestination(data);
                     setComments(data.comments || []);
+                    setIsLiked(data.likes.includes(userId)); // Check if the user has already liked the destination
+                    setLikeCount(data.likes.length); // Set the initial like count
                 } else {
                     setError('Destination data is incomplete.');
                 }
@@ -37,7 +40,7 @@ export default function DestinationsDetails() {
         };
 
         fetchDestination();
-    }, [destinationId]);
+    }, [destinationId, userId]);
 
     const handleCommentChange = (e) => {
         setNewComment(e.target.value);
@@ -75,21 +78,25 @@ export default function DestinationsDetails() {
         }
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:3000/destinations/${destinationId}/like`, {
+            const likeUrl = `http://localhost:3000/destinations/${destinationId}/${isLiked ? 'unlike' : 'like'}`;
+            const response = await fetch(likeUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ userId }),
+                body: JSON.stringify({ userId }), // Only send userId
             });
             const data = await response.json();
             if (!response.ok) throw new Error(data.error || 'Failed to like/unlike destination');
-            setDestination(data.destination); // Update the destination with the new like state
+
+            setIsLiked(!isLiked); // Toggle the like state
+            setLikeCount(likeCount + (isLiked ? -1 : 1)); // Adjust the like count accordingly
         } catch (err) {
             setError(err.message);
         }
     };
+
 
     const handleEdit = () => {
         navigate(`/destinations/${destinationId}/edit`); // Redirect to the edit page
@@ -97,7 +104,7 @@ export default function DestinationsDetails() {
 
     const handleDelete = async () => {
         if (!window.confirm('Are you sure you want to delete this destination?')) return;
-    
+
         try {
             const token = localStorage.getItem('token');
             const response = await fetch(`http://localhost:3000/destinations/${destinationId}/delete`, {
@@ -106,26 +113,25 @@ export default function DestinationsDetails() {
                     'Authorization': `Bearer ${token}`
                 },
             });
-    
+
             if (response.ok) {
                 alert('Destination deleted successfully!');
                 navigate('/all-destinations'); // Redirect to the destinations list
             } else {
                 const contentType = response.headers.get('content-type');
                 let errorMessage = 'Failed to delete destination';
-    
+
                 if (contentType && contentType.includes('application/json')) {
                     const data = await response.json();
                     errorMessage = data.error || errorMessage;
                 }
-    
+
                 throw new Error(errorMessage);
             }
         } catch (err) {
             setError(err.message);
         }
     };
-    
 
     const formatTime = (date) => {
         const now = new Date();
@@ -196,9 +202,9 @@ export default function DestinationsDetails() {
                 {/* Conditionally render edit and delete buttons */}
                 {destination.author?._id === userId && (
                     <div className={styles.actions}>
-                    <button onClick={handleEdit} className={`${styles.button} ${styles.editButton}`}>Edit</button>
-                    <button onClick={handleDelete} className={`${styles.button} ${styles.deleteButton}`}>Delete</button>
-                </div>
+                        <button onClick={handleEdit} className={`${styles.button} ${styles.editButton}`}>Edit</button>
+                        <button onClick={handleDelete} className={`${styles.button} ${styles.deleteButton}`}>Delete</button>
+                    </div>
                 )}
 
                 <div className={styles.likesSection}>
@@ -207,9 +213,11 @@ export default function DestinationsDetails() {
                         onClick={handleLike}
                     >
                         <FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: '8px' }} />
-                        {destination.likedBy?.includes(userId) ? 'Unlike' : 'Give it a like!'}
+                        {isLiked ? 'Unlike' : 'Give it a like!'}
                     </button>
-                    <span className={styles.likeCount}>{destination.likes?.length || 0} Likes</span>
+                    <span className={styles.likeCount}>
+                        {likeCount} {likeCount === 1 ? 'Like' : 'Likes'}
+                    </span>
                 </div>
 
                 <div className={styles.commentsSection}>
@@ -234,7 +242,7 @@ export default function DestinationsDetails() {
                                         {truncateText(comment.text, comment._id || `comment-${index}`)}
                                     </div>
                                     <p className={styles.commentAuthor}>
-                                        <strong> <p className={styles.postedBy}>posted by: {' '}</p> 
+                                        <strong> <p className={styles.postedBy}>posted by: {' '}</p>
                                             {comment.author?.username || 'Anonymous'}
                                             {comment.author?._id === destination.author?._id && (
                                                 <span className={styles.authorTag}> Author</span>
@@ -262,3 +270,4 @@ export default function DestinationsDetails() {
         </div>
     );
 }
+

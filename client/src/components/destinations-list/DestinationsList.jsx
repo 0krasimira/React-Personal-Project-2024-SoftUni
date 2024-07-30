@@ -78,7 +78,7 @@ export default function DestinationsList() {
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
                         >
-                            Previous
+                            	&#8592;
                         </button>
                         <span className={styles.pageInfo}>Page {currentPage} of {totalPages}</span>
                         <button
@@ -86,7 +86,7 @@ export default function DestinationsList() {
                             onClick={() => handlePageChange(currentPage + 1)}
                             disabled={currentPage === totalPages}
                         >
-                            Next
+                            &#8594;	
                         </button>
                     </div>
                 </>
@@ -97,3 +97,4 @@ export default function DestinationsList() {
 
 
 // todo - make all input fields 1 color; make the author clickable - leading to his/her profile
+//todo continue from here - implement likes and search. then move on to profile. then move on to everything else - guards for manual entry of path and refactoring the code. check how to logout user once the jwt expires 

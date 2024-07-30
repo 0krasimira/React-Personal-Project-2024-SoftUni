@@ -198,6 +198,39 @@ router.delete('/destinations/:destinationId/delete', isAuth, isOwner, async (req
 
 
 
+
+router.post('/destinations/:destinationId/like', isAuth, async (req, res) => {
+    console.log('User:', req.user); // Check the user data
+    console.log('Destination ID:', req.params.destinationId); // Check the destination ID
+    
+    const destinationId = req.params.destinationId;
+    const userId = req.user.id;
+    try {
+        const likedDestination = await destinationManager.likeDestination(destinationId, userId);
+        res.status(200).json({ message: 'Destination liked successfully', likedDestination });
+    } catch (error) {
+        console.error('Error liking destination:', error); // Log detailed error
+        res.status(400).json({ error: error.message });
+    }
+});
+
+
+
+  router.post('/destinations/:destinationId/unlike', isAuth, async (req, res) => {
+    const destinationId = req.params.destinationId;
+    const userId = req.user.id;
+
+    try {
+        const unlikedDestination = await destinationManager.unlikeDestination(destinationId, userId);
+        res.status(200).json({ message: 'Destination unliked successfully', unlikedDestination });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+
+
+
 // router.get('/search', async (req, res) => {
 //     try {
 //       // Extract min and max price from request query
@@ -221,16 +254,6 @@ router.delete('/destinations/:destinationId/delete', isAuth, isOwner, async (req
 //     }
 //   });
 
-//   router.post('/paintings/:paintingId/like', isAuth, async (req, res) => {
-//     const paintingId = req.params.paintingId;
-//     const userId = req.user.id;
-//     try {
-//       // Call the likePainting function to like the painting
-//       const likedPainting = await paintingManager.likePainting(paintingId, userId);
-//       res.status(200).json({ message: 'Painting liked successfully', likedPainting });
-//     } catch (error) {
-//       res.status(400).json({ error: error.message });
-//     }
-//   });
+
 
 module.exports = router

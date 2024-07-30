@@ -128,4 +128,3 @@ export default ContactUs;
 
 
 
-//continue with contact us page - work on backend - to submit the form and have the info in db
