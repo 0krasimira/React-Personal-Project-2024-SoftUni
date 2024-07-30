@@ -42,13 +42,7 @@ export default function NavBar() {
                                         {/* <li className={styles.greeting}>
                                             <span>Hello, {username}</span>
                                         </li> */}
-                                        <li className={styles.hasChildren}>
-                                            <Link to="/profile"> Hello, <span className={styles.username}>{username}</span></Link>
-                                            <ul className={styles.dropdown}>
-                                                <li><Link to="/myprofile">My Profile</Link></li>
-                                                <li><Link to="#" onClick={handleLogout}>Logout</Link></li>
-                                            </ul>
-                                        </li>
+
                                         <li className={styles.hasChildren}>
                                             <Link to="/all-destinations">Archaeological Sites</Link>
                                             <ul className={styles.dropdown}>
@@ -67,6 +61,13 @@ export default function NavBar() {
                                         </li>
                                         <li><Link to="/contact-us">Contact Us</Link></li>
                                         <li><Link to="/about-us">About Us</Link></li>
+                                        <li className={styles.hasChildren}>
+                                            <Link to="/profile"> Hello, <span className={styles.username}>{username}</span></Link>
+                                            <ul className={styles.dropdown}>
+                                                <li><Link to="/myprofile">My Profile</Link></li>
+                                                <li><Link to="#" onClick={handleLogout}>Logout</Link></li>
+                                            </ul>
+                                        </li>
                                     </>
                                 ) : (
                                     <>

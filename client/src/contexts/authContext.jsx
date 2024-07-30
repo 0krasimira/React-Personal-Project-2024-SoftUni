@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
         setToken(null);
         setUsername(null);
         setUserId(null);
+        navigate('/auth/login');
     };
 
     return (

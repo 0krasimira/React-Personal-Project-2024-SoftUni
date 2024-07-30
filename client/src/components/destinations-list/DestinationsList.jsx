@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import styles from './DestinationsList.module.css';
 
 export default function DestinationsList() {
@@ -19,11 +21,11 @@ export default function DestinationsList() {
             try {
                 const response = await fetch(`http://localhost:3000/all-destinations?page=${currentPage}&limit=${ITEMS_PER_PAGE}`);
                 const data = await response.json();
-                
+
                 // Assuming your API response includes a totalPages property
                 setDestinations(data.destinations);
                 setTotalPages(data.totalPages); // Set the total number of pages
-                
+
             } catch (error) {
                 setError('Error fetching destinations');
                 console.error('Error fetching destinations:', error);
@@ -61,6 +63,10 @@ export default function DestinationsList() {
                                     <p className={styles.auth}>Added by: {' '}
                                         <span className={styles.authorName}>{destination.author?.username || 'Unknown'}</span>
                                     </p>
+                                    <p>
+                                     <FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: '8px', color: '#ff5d9e' }} />
+                                     {destination.likes.length}  
+                                    </p>
                                 </div>
                                 <div className={styles.buttonContainer}>
                                     <Link to={`/destinations/${destination._id}`} className={styles.button}>
@@ -78,7 +84,7 @@ export default function DestinationsList() {
                             onClick={() => handlePageChange(currentPage - 1)}
                             disabled={currentPage === 1}
                         >
-                            	&#8592;
+                            &#8592;
                         </button>
                         <span className={styles.pageInfo}>Page {currentPage} of {totalPages}</span>
                         <button
@@ -86,7 +92,7 @@ export default function DestinationsList() {
                             onClick={() => handlePageChange(currentPage + 1)}
                             disabled={currentPage === totalPages}
                         >
-                            &#8594;	
+                            &#8594;
                         </button>
                     </div>
                 </>
