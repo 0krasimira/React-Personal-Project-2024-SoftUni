@@ -18,12 +18,36 @@ exports.create = async (userId, destinationData) => {
 };
 
 
-exports.getAll = (skip = 0, limit = 6) => {
-  return Destination.find()
+exports.getAll = (skip = 0, limit = 6, searchRegex = null) => {
+  // Construct the query object
+  const query = searchRegex ? {
+    $or: [
+      { name: searchRegex },
+      { location: searchRegex },
+      { prevInvestigations: searchRegex }
+    ]
+  } : {}; // If no search regex is provided, return all documents
+
+  return Destination.find(query)
     .skip(skip) // Skip the number of documents specified by `skip`
     .limit(limit) // Limit the number of documents returned to `limit`
     .populate('author', 'username'); // Populate author field with username
 };
+
+// Updated countAll method to include search functionality
+exports.countAll = (searchRegex = null) => {
+  // Construct the query object
+  const query = searchRegex ? {
+    $or: [
+      { name: searchRegex },
+      { location: searchRegex },
+      { prevInvestigations: searchRegex }
+    ]
+  } : {}; // If no search regex is provided, count all documents
+
+  return Destination.countDocuments(query);
+};
+
 
 exports.countAll = () => {
   return Destination.countDocuments();

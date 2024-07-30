@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faSearch } from '@fortawesome/free-solid-svg-icons';
 import styles from './DestinationsList.module.css';
 
 export default function DestinationsList() {
@@ -10,32 +10,53 @@ export default function DestinationsList() {
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [query, setQuery] = useState(''); // Used to trigger search
 
     const ITEMS_PER_PAGE = 6; // Number of items per page
 
+    const fetchDestinations = async () => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch(`http://localhost:3000/all-destinations?page=${currentPage}&limit=${ITEMS_PER_PAGE}&search=${encodeURIComponent(query)}`);
+            const data = await response.json();
+
+            setDestinations(data.destinations);
+            setTotalPages(data.totalPages); // Set the total number of pages
+
+        } catch (error) {
+            setError('Error fetching destinations');
+            console.error('Error fetching destinations:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        const fetchDestinations = async () => {
-            setLoading(true);
-            setError(null);
+        fetchDestinations(); // Trigger search when `query` changes
+    }, [currentPage, query]);
 
-            try {
-                const response = await fetch(`http://localhost:3000/all-destinations?page=${currentPage}&limit=${ITEMS_PER_PAGE}`);
-                const data = await response.json();
+    const handleSearch = () => {
+        setQuery(searchQuery); // Set the search query and trigger useEffect
+    };
 
-                // Assuming your API response includes a totalPages property
-                setDestinations(data.destinations);
-                setTotalPages(data.totalPages); // Set the total number of pages
+    const handleClear = () => {
+        setSearchQuery(''); // Clear the search input
+        setQuery(''); // Reset the search query
+        setDestinations([]); // Clear the destinations
+        setCurrentPage(1); // Reset to first page
 
-            } catch (error) {
-                setError('Error fetching destinations');
-                console.error('Error fetching destinations:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
+        // Fetch all destinations again
+        fetchDestinations(); 
+    };
 
-        fetchDestinations();
-    }, [currentPage]);
+    const handleInputFocus = () => {
+        if (searchQuery === query) {
+            setSearchQuery(''); // Clear the input if it matches the current query
+        }
+    };
 
     const handlePageChange = (newPage) => {
         if (newPage > 0 && newPage <= totalPages) {
@@ -48,8 +69,28 @@ export default function DestinationsList() {
 
     return (
         <div className={styles.container}>
+            <div className={styles.searchWrapper}>
+                <div className={styles.searchInputWrapper}>
+                    <input
+                        type="text"
+                        className={styles.searchInput}
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onFocus={handleInputFocus}
+                    />
+                    <FontAwesomeIcon icon={faSearch} className={styles.searchIcon} />
+                </div>
+                <div className={styles.buttonWrapper}>
+                    <button className={styles.searchButton} onClick={handleSearch}>
+                        Search
+                    </button>
+                    <button className={styles.clearButton} onClick={handleClear}>
+                        Clear Search
+                    </button>
+                </div>
+            </div>
             {destinations.length === 0 ? (
-                <p className={styles.noDestinations}>There are no destinations added yet.</p>
+                <p className={styles.noDestinations}>No destinations found.</p>
             ) : (
                 <>
                     <div className={styles.grid}>

@@ -49,8 +49,6 @@ router.post('/login', isGuest, async (req, res) => {
     try {
         const { username, password } = req.body;
         console.log('Received credentials:', { username, password });
-
-        // Assuming login returns an object with user details
         const { token, username: loggedInUsername, userId } = await userManager.login(username, password);
 
         // Respond with token, username, and userId

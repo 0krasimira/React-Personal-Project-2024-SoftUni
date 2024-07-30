@@ -26,22 +26,22 @@ router.get('', async (req, res) => {
     }
 });
 
-// destinations.js (Backend Route File)
-
-// destinations.js (Backend Route File)
-
 router.get('/all-destinations', async (req, res) => {
-    // Extract pagination parameters from the query string
+    // Extract pagination and search parameters from the query string
     const page = parseInt(req.query.page, 10) || 1; // Default to page 1 if not provided
     const limit = 6; // Set limit to 6 items per page
     const skip = (page - 1) * limit; // Calculate number of items to skip
+    const search = req.query.search || ''; // Extract search query parameter
 
     try {
-        // Fetch destinations with pagination
-        const allDestinations = await destinationManager.getAll(skip, limit);
+        // Create a regex pattern for case-insensitive search
+        const searchRegex = new RegExp(search, 'i');
+
+        // Fetch destinations with pagination and search filter
+        const allDestinations = await destinationManager.getAll(skip, limit, searchRegex);
 
         // Get total number of destinations for pagination metadata
-        const totalDestinations = await destinationManager.countAll();
+        const totalDestinations = await destinationManager.countAll(searchRegex);
 
         // Calculate total number of pages
         const totalPages = Math.ceil(totalDestinations / limit);
@@ -57,7 +57,6 @@ router.get('/all-destinations', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
 
 
 router.get('/most-popular', async (req, res) => {
@@ -229,30 +228,6 @@ router.post('/destinations/:destinationId/like', isAuth, async (req, res) => {
 });
 
 
-
-
-// router.get('/search', async (req, res) => {
-//     try {
-//       // Extract min and max price from request query
-//       const { minPrice, maxPrice } = req.query;
-
-//       // Check if minPrice and maxPrice are provided
-//       if (!minPrice || !maxPrice) {
-//         return res.status(400).json({ message: 'Please provide both minPrice and maxPrice.' });
-//       }
-
-//       // Query the database for paintings within the specified price range
-//       const paintings = await Painting.find({
-//         price: { $gte: minPrice, $lte: maxPrice }
-//       });
-
-//       // Return the paintings found
-//       res.json(paintings);
-//     } catch (error) {
-//       console.error('Error searching paintings by price range:', error);
-//       res.status(500).json({ message: 'An error occurred while searching paintings.' });
-//     }
-//   });
 
 
 
