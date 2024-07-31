@@ -1,6 +1,8 @@
-const router = require("express").Router();
+const router = require('express').Router()
 const userManager = require('../managers/userManager');
 const { isGuest, isAuth } = require('../middlewares/authMiddleware');
+const upload = require('../config/multerConfigurator')
+const User = require('../models/User')
 
 // Registration and Authentication Routes
 router.get('/register', (req, res) => {
@@ -98,4 +100,22 @@ router.get('/:userId/liked-destinations', isAuth, async (req, res) => {
     }
 });
 
+// Upload profile photo route
+router.post('/:userId/upload-profile-photo', isAuth, upload.single('profilePhoto'), async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const filePath = req.file ? `uploads/profile_photos/${req.file.filename}` : null;
+
+        // Update user profile photo URL in the database
+        await User.findByIdAndUpdate(userId, { profilePhoto: filePath });
+
+        res.json({ profilePhoto: filePath });
+    } catch (error) {
+        console.error('Error uploading profile photo:', error);
+        res.status(500).send('Error uploading file.');
+    }
+});
+
+
 module.exports = router;
+

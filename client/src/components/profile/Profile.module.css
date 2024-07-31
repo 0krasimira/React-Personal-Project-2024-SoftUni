@@ -97,6 +97,80 @@
     background-color: #0056b3;
 }
 
+/* Flex container for file input and buttons */
+.fileInputWrapper {
+    display: flex; /* Ensure buttons are next to each other */
+    align-items: center;
+    gap: 10px; /* Add space between buttons */
+    margin: 20px auto;
+}
+
+.fileInput {
+    display: none; /* Hide default file input */
+}
+
+.fileInputLabel {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.fileInputLabel:hover {
+    background-color: #0056b3;
+}
+
+.fileName {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Updated upload button styling */
+.uploadButton {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.uploadButton:hover {
+    background-color: #0056b3;
+}
+
+/* Success and error messages */
+.successMessage {
+    color: #28a745;
+    margin-top: 10px;
+}
+
+.errorMessage {
+    color: #dc3545;
+    margin-top: 10px;
+}
+
+/* Profile content styling */
+.profileContent {
+    margin-top: 20px;
+}
+
+.listContainer {
+    margin-bottom: 20px;
+}
+
+.horizontalScroll {
+    padding: 10px 0;
+}
+
 /* Responsive styles */
 
 /* Tablets and small desktops (max-width: 768px) */
@@ -109,6 +183,15 @@
     .listContainer {
         width: 100%;
         margin-bottom: 20px;
+    }
+
+    .fileInputWrapper {
+        flex-direction: column;
+    }
+
+    .fileInputLabel,
+    .uploadButton {
+        margin-bottom: 10px;
     }
 }
 
@@ -144,4 +227,3 @@
         padding: 8px 16px;
     }
 }
-

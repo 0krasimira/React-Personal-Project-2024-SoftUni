@@ -22,12 +22,16 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'Destination'
     }],
-
     likedDestinations: [{
         type: mongoose.Types.ObjectId,
         ref: 'Destination'
-    }]
+    }],
+    profilePhoto: {
+        type: String, // Store the file path or URL of the profile photo
+        default: 'default-profile-photo.png' // Default photo
+    }
 });
+
 
 userSchema.pre('save', async function(next) {
     // Check if the username or email is already taken
