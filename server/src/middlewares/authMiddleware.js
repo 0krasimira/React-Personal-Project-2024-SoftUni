@@ -28,18 +28,14 @@ exports.auth = async (req, res, next) => {
 
 exports.isAuth = async (req, res, next) => {
     try {
-        // Extract token from Authorization header if present
         const token = req.header('Authorization') ? req.header('Authorization').replace('Bearer ', '') : null;
         if (!token) {
             console.log('No token provided');
             return res.status(401).json({ error: 'Token not provided' });
         }
 
-        // Verify token
         const decoded = await jwt.verify(token, SECRET);
-        const userId = decoded._id; // Extract user ID from decoded token
-
-        // Find the user in the database
+        const userId = decoded._id;
         const user = await User.findById(userId);
         if (!user) {
             console.log('User not found');
@@ -51,9 +47,13 @@ exports.isAuth = async (req, res, next) => {
         next();
     } catch (error) {
         console.error('Authorization error:', error.message);
+        if (error.message === 'jwt expired') {
+            return res.status(401).json({ error: 'Token expired' });
+        }
         res.status(401).json({ error: 'Unauthorized' });
     }
 };
+
 
 
 

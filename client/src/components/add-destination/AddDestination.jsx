@@ -162,3 +162,5 @@ export default function AddDestination() {
 
 
 //todo - redirect to destinations list once added successfully
+
+//todo - redirect to destinations list once added successfully

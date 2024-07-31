@@ -3,6 +3,8 @@
 
 
 .sidebar {
+    width: 33vh;
+    height: auto;
     margin-left: auto;
     padding: 20px;
     border-radius: 8px;

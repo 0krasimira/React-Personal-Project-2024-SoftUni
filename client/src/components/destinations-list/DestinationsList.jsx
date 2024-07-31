@@ -145,3 +145,8 @@ export default function DestinationsList() {
 
 // todo - make all input fields 1 color; make the author clickable - leading to his/her profile
 //todo continue from here - implement likes and search. then move on to profile. then move on to everything else - guards for manual entry of path and refactoring the code. check how to logout user once the jwt expires 
+// todo - make all input fields 1 color; make the author clickable - leading to his/her profile
+//todo continue from here - implement likes and search. then move on to profile. then move on to everything else - guards for manual entry of path and refactoring the code. check how to logout user once the jwt expires 
+
+// todo - make all input fields 1 color; make the author clickable - leading to his/her profile
+//todo continue from here - implement likes and search. then move on to profile. then move on to everything else - guards for manual entry of path and refactoring the code. check how to logout user once the jwt expires 

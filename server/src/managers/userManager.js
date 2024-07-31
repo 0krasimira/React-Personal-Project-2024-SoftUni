@@ -73,4 +73,31 @@ exports.checkUsernameAvailability = async (username) => {
     }
   };
 
-exports.getOneUser = (userId) => User.findById(userId) // .populate('sites') // TO ADD: POPULATE("SITES)
+  exports.getOneUser = async (userId) => {
+    try {
+        // Populate the destinations and likedDestinations fields with all necessary data
+        const user = await User.findById(userId)
+            .populate({
+                path: 'destinations',
+                select: 'name location yearOfDiscovery imageUrl prevInvestigations likes author', // Select necessary fields
+                populate: {
+                    path: 'author',
+                    select: 'username' // Populate author with username
+                }
+            })
+            .populate({
+                path: 'likedDestinations',
+                select: 'name location yearOfDiscovery imageUrl prevInvestigations likes author', // Select necessary fields
+                populate: {
+                    path: 'author',
+                    select: 'username' // Populate author with username
+                }
+            })
+            .lean(); // Convert the mongoose document to a plain JavaScript object
+
+        return user;
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        throw new Error('Error fetching user data');
+    }
+};

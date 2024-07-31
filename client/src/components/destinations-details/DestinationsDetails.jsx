@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/authContext';
 import MostPopularDestinations from '../most-popular-destinations/MostPopularDestinations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,6 +24,7 @@ export default function DestinationsDetails() {
             try {
                 const response = await fetch(`http://localhost:3000/destinations/${destinationId}`);
                 const data = await response.json();
+                console.log('Fetched destination data:', data); // Debugging line
                 if (!response.ok) throw new Error(data.error || 'Failed to fetch destination details');
 
                 if (data && data.author) {
@@ -96,7 +97,6 @@ export default function DestinationsDetails() {
             setError(err.message);
         }
     };
-
 
     const handleEdit = () => {
         navigate(`/destinations/${destinationId}/edit`); // Redirect to the edit page
@@ -208,30 +208,49 @@ export default function DestinationsDetails() {
                 )}
 
                 <div className={styles.likesSection}>
-                    <button
-                        className={styles.likeButton}
-                        onClick={handleLike}
-                    >
-                        <FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: '8px' }} />
-                        {isLiked ? 'Unlike' : 'Give it a like!'}
-                    </button>
-                    <span className={styles.likeCount}>
+                    {userId ? (
+                        <>
+                            <button
+                                className={styles.likeButton}
+                                onClick={handleLike}
+                                disabled={!userId} // Disable the like button if not logged in
+                            >
+                                <FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: '8px' }} />
+                                {isLiked ? 'Unlike' : 'Give it a like!'}
+                            </button>
+                            <span className={styles.likeCount}>
+                                <FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: '8px', color: '#F9629F' }} />
+                                {likeCount} {likeCount === 1 ? 'Like' : 'Likes'}
+                            </span>
+                        </>
+                    ) : (
+                        <span className={styles.likeCount}>
+                        <FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: '8px', color: '#F9629F' }} />
                         {likeCount} {likeCount === 1 ? 'Like' : 'Likes'}
                     </span>
+                    )}
                 </div>
 
                 <div className={styles.commentsSection}>
                     <h2 className={styles.commentsTitle}>Comments</h2>
-                    <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
-                        <textarea
-                            value={newComment}
-                            onChange={handleCommentChange}
-                            placeholder="Leave a comment..."
-                            className={styles.commentInput}
-                            required
-                        />
-                        <button type="submit" className={styles.commentButton}>Post Comment</button>
-                    </form>
+                    {userId ? (
+                        <>
+                            <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
+                                <textarea
+                                    value={newComment}
+                                    onChange={handleCommentChange}
+                                    placeholder="Leave a comment..."
+                                    className={styles.commentInput}
+                                    required
+                                />
+                                <button type="submit" className={styles.commentButton}>Post Comment</button>
+                            </form>
+                        </>
+                    ) : (
+                        <div className={styles.loginPrompt}>
+                            <p>Please <Link to="/login" className={styles.loginLink}>log in</Link> to leave a comment.</p>
+                        </div>
+                    )}
                     <div className={styles.commentsList}>
                         {displayedComments.length === 0 ? (
                             <p>No comments yet. Be the first person to add a comment.</p>
@@ -242,7 +261,8 @@ export default function DestinationsDetails() {
                                         {truncateText(comment.text, comment._id || `comment-${index}`)}
                                     </div>
                                     <p className={styles.commentAuthor}>
-                                        <strong> <p className={styles.postedBy}>posted by: {' '}</p>
+                                        <strong>
+                                            <p className={styles.postedBy}>posted by: {' '}</p>
                                             {comment.author?.username || 'Anonymous'}
                                             {comment.author?._id === destination.author?._id && (
                                                 <span className={styles.authorTag}> Author</span>

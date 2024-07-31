@@ -1,0 +1,147 @@
+/* Profile.module.css */
+
+/* Base styles for larger screens */
+.container {
+    padding: 2em 2em 12em 2em;
+    background-color: #f2e1e9;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center vertically */
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.profileSection {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+    margin-bottom: 40px; /* Add spacing from the footer */
+}
+
+.profileHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profilePhoto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.username {
+    font-size: 24px;
+    color: #a0496c;
+}
+
+.profileContent {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Add space between containers */
+}
+
+.listContainer {
+    width: 45%;
+}
+
+.listContainer h2 {
+    font-size: 20px;
+    color: #a0496c;
+    margin-bottom: 10px;
+}
+
+.horizontalScroll {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 10px; /* Space between items */
+    padding: 10px 0; /* Padding for better scroll appearance */
+}
+
+.horizontalScroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.horizontalScroll::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.horizontalScroll::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+}
+
+.addButton {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.addButton:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive styles */
+
+/* Tablets and small desktops (max-width: 768px) */
+@media (max-width: 768px) {
+    .profileContent {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .listContainer {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Mobile phones (max-width: 480px) */
+@media (max-width: 480px) {
+    .profilePhoto {
+        width: 80px;
+        height: 80px;
+    }
+
+    .username {
+        font-size: 20px;
+    }
+
+    .profileSection {
+        padding: 1em;
+    }
+
+    .profileContent {
+        flex-direction: column;
+    }
+
+    .listContainer {
+        width: 100%;
+    }
+
+    .listContainer h2 {
+        font-size: 18px;
+    }
+
+    .addButton {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
