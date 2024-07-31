@@ -15,6 +15,7 @@ import MostPopularDestinations from './components/most-popular-destinations/Most
 import EditDestination from './edit-destination/EditDestination';
 import Profile from './components/profile/Profile';
 import ProtectedRoute from './components/protection/Protection';
+import NotFound from './components/not-found/NotFound';
 
 function App() {
     return (
@@ -53,7 +54,7 @@ function App() {
                             
                             } />
                         <Route path="/most-popular" element={<MostPopularDestinations />} />
-                        <Route path="*" element={<NotFoundRedirect />} /> {/* Catch-all route */}
+                        <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
                     </Routes>
                 </div>
                 <Footer />

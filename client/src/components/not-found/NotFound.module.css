@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #f8f9fa; 
+}
+
+.content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 20px;
+}
+
+.title {
+    font-size: 180px; 
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 28px;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.message {
+    font-size: 18px;
+    color: #495057;
+    margin-bottom: 30px;
+}
+
+.homeLink {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.homeLink:hover {
+    background-color: #0056b3;
+}
+
+
+/* Responsive styles */
+
+@media (max-width: 768px) {
+    .container {
+        height: auto; 
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 80px; 
+    }
+
+    .subtitle {
+        font-size: 20px; 
+    }
+
+    .message {
+        font-size: 16px;
+    }
+
+    .homeLink {
+        font-size: 14px; 
+        padding: 8px 16px; 
+    }
+}
+
+/* Mobile phones (min-width: 480px) */
+@media (max-width: 480px) {
+    .title {
+        font-size: 50px; 
+    }
+
+    .subtitle {
+        font-size: 18px; 
+    }
+
+    .message {
+        font-size: 14px; 
+    }
+
+    .homeLink {
+        font-size: 12px; 
+        padding: 6px 12px; 
+    }
+}
