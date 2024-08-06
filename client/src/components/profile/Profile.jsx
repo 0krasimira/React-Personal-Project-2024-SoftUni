@@ -76,12 +76,6 @@ const Profile = () => {
             setUser(prevUser => ({ ...prevUser, profilePhoto: result.profilePhoto }));
             setNewProfilePhoto(null);
             setFileName('No file chosen');
-            setUploadSuccess('Profile photo updated successfully!');
-            
-            // Apply fade-out effect to success message
-            setTimeout(() => {
-                setUploadSuccess(null);
-            }, 3000);
 
         } catch (err) {
             console.error('Error uploading profile photo:', err);
@@ -96,11 +90,12 @@ const Profile = () => {
     console.log('profile photo', user.profilePhoto);
 
     return (
+        
         <div className={styles.container}>
             <div className={styles.profileSection}>
                 <div className={styles.profileHeader}>
                     <img 
-                        src={user.profilePhoto ? `http://localhost:3000/${user.profilePhoto}` : `/images/profile_photo.png`} 
+                        src={user.profilePhoto !== '/images/profile_photo.png' ? `http://localhost:3000/${user.profilePhoto}` : `/images/profile_photo.png`} 
                         alt="Profile" 
                         className={styles.profilePhoto} 
                     />

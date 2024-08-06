@@ -34,7 +34,13 @@ export default function MostPopularDestinations() {
               <div className={styles.siteInfo}>
                 <div className={styles.siteDetails}>
                   <h3>{site.name}</h3>
-                  <p>Date Added: {new Date(site.createdAt).toLocaleDateString()}</p>
+                  <p>
+                    Date Added: {new Date(site.createdAt).toLocaleDateString('en-GB', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })}
+                  </p>
                   <p>Likes: {site.likes?.length}</p>
                   <p>Added by: <span className={styles.addedBy}>{site.author.username}</span></p>
                 </div>

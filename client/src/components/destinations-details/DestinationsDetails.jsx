@@ -248,7 +248,7 @@ export default function DestinationsDetails() {
                         </>
                     ) : (
                         <div className={styles.loginPrompt}>
-                            <p>Please <Link to="/login" className={styles.loginLink}>log in</Link> to leave a comment.</p>
+                            <p>Please <Link to="/auth/login" className={styles.loginLink}>log in</Link> to leave a comment.</p>
                         </div>
                     )}
                     <div className={styles.commentsList}>
@@ -262,9 +262,10 @@ export default function DestinationsDetails() {
                                         <div className={styles.commentHeader}>
                                             {/* Display profile picture */}
                                             <img
-                                                src={comment.author?.profilePhoto ? comment.author.profilePhoto : '/images/profile_photo.png'}
+                                                src={comment.author?.profilePhoto ? `http://localhost:3000/${comment.author.profilePhoto}` : '/images/profile_photo.png'}
                                                 alt={`${comment.author?.username}'s profile`}
                                                 className={styles.profilePicture}
+                                                onError={(e) => { e.target.src = '/images/profile_photo.png'; }}
                                             />
                                             <div className={styles.commentInfo}>
                                                 <div className={styles.commentText}>
@@ -272,7 +273,7 @@ export default function DestinationsDetails() {
                                                 </div>
                                                 <p className={styles.commentAuthor}>
                                                     <strong>
-                                                        <p className={styles.postedBy}>posted by: {' '}</p>
+                                                        <span className={styles.postedBy}>posted by: {' '}</span>
                                                         {comment.author?.username || 'Anonymous'}
                                                         {comment.author?._id === destination.author?._id && (
                                                             <span className={styles.authorTag}> Author</span>
