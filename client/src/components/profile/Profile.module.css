@@ -146,12 +146,6 @@
     background-color: #0056b3;
 }
 
-/* Error message remains unchanged */
-.errorMessage {
-    color: #dc3545;
-    margin-top: 10px;
-}
-
 /* Profile content styling */
 .profileContent {
     margin-top: 20px;

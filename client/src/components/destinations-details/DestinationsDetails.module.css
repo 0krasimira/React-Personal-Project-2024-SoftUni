@@ -10,7 +10,6 @@
   width: 100%; /* Ensure full width of parent container */
 }
 
-
 .details {
   flex: 4; 
   display: flex;
@@ -18,7 +17,6 @@
   gap: 20px;
   padding: 20px;
 }
-
 
 .sidebar {
   flex: 1; 
@@ -112,6 +110,32 @@
   border-bottom: 1px solid #ddd;
 }
 
+.commentHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.profilePhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.commenterProfileLink {
+  display: inline-block;
+}
+
+.commentDetails {
+  flex: 1;
+}
+
+.commentText {
+  margin-bottom: 5px;
+}
+
 .commentAuthor {
   font-size: 14px;
   color: #d94fd9; 
@@ -162,60 +186,78 @@
 }
 
 .showMoreButton, .showLessButton {
-    background: none;
-    color: #007bff;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    text-decoration: underline;
+  background: none;
+  color: #007bff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
 }
 
 .showMoreButton:hover, .showLessButton:hover {
-    color: #0056b3;
+  color: #0056b3;
 }
 
 .authorTag {
-    color: #007bff;
-    font-size: 12px;
-    margin-left: 5px;
+  color: #007bff;
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 .actions {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 .button {
-    padding: 15px 25px;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    text-align: center;
-    width: 150px;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  text-align: center;
+  width: 150px;
 }
 
 .button:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .editButton {
-    background-color: #4CAF50;
-    color: white;
+  background-color: #4CAF50;
+  color: white;
 }
 
 .editButton:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 .deleteButton {
-    background-color: #f44336;
-    color: white;
+  background-color: #f44336;
+  color: white;
 }
 
 .deleteButton:hover {
-    background-color: #d32f2f;
+  background-color: #d32f2f;
+}
+
+
+.profilePicture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.commentHeader {
+  display: flex;
+  align-items: center;
+}
+
+.commentInfo {
+  flex: 1;
 }

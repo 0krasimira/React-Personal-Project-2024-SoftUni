@@ -63,12 +63,13 @@ router.get('/:userId', isAuth, async (req, res) => {
         if (!currentUser) {
             return res.status(404).json({ message: 'User not found' });
         }
-        return res.json(currentUser);
+        res.json(currentUser);
     } catch (error) {
-        console.error('Error fetching one user:', error);
+        console.error('Error fetching user profile:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 // New Route: Fetching Added Destinations
 router.get('/:userId/added-destinations', isAuth, async (req, res) => {
@@ -107,9 +108,13 @@ router.post('/:userId/upload-profile-photo', isAuth, upload.single('profilePhoto
         const filePath = req.file ? `uploads/profile_photos/${req.file.filename}` : null;
 
         // Update user profile photo URL in the database
-        await User.findByIdAndUpdate(userId, { profilePhoto: filePath });
+        const updatedUser = await User.findByIdAndUpdate(userId, { profilePhoto: filePath }, { new: true });
 
-        res.json({ profilePhoto: filePath });
+        if (!updatedUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json({ profilePhoto: updatedUser.profilePhoto });
     } catch (error) {
         console.error('Error uploading profile photo:', error);
         res.status(500).send('Error uploading file.');

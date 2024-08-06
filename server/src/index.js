@@ -12,15 +12,14 @@ const contactRouter = require('./controllers/contactController');
 
 const app = express();
 
-// Serve static files from the 'uploads/profile_photos' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
-// Ensure the directory exists
 const uploadsDir = path.join(__dirname, '../uploads/profile_photos');
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
+
 
 // Middleware setup
 expressConfigurator(app);

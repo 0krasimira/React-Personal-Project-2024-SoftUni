@@ -2,6 +2,7 @@ const router = require("express").Router()
 const destinationManager = require('../managers/destinationManager')
 const { isAuth, auth, isOwner } = require("../middlewares/authMiddleware")
 const Destination = require('../models/Destination')
+const Comment = require('../models/Comment')
 const User = require("../models/User")
 const getErrorMessage = require('../utils/errorUtils')
 
@@ -110,24 +111,35 @@ router.get('/destinations/:destinationId', async (req, res) => {
     }
 });
 
-router.post('/destinations/:id/comments', async (req, res) => { // it used to be /destinations/:id/comments here
+router.post('/destinations/:id/comments', async (req, res) => {
     try {
         const { text } = req.body;
-        const commentAuthorId = req.user?._id; // Use req.user if you're setting it in auth middleware
+        const commentAuthorId = req.user?._id; // Ensure req.user is set by authentication middleware
 
         if (!text || !commentAuthorId) {
             return res.status(400).json({ error: 'Text and authorId are required' });
         }
 
+        // Find the destination by ID
         const destination = await Destination.findById(req.params.id);
         if (!destination) {
             return res.status(404).json({ error: 'Destination not found' });
         }
 
-        // Create the new comment
+        // Fetch user details including profile photo
+        const user = await User.findById(commentAuthorId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Construct the new comment
         const newComment = {
             text,
-            author: commentAuthorId, // Set author to the userId
+            author: {
+                _id: commentAuthorId,
+                username: user.username,
+                profilePhoto: user.profilePhoto || '/images/profile_photo.png' // Default to static image if not available
+            },
             createdAt: new Date()
         };
 
@@ -135,21 +147,14 @@ router.post('/destinations/:id/comments', async (req, res) => { // it used to be
         destination.comments.push(newComment);
         await destination.save();
 
-        // Optionally, populate comment author details if needed
-        const populatedUser = await User.findById(commentAuthorId).select('username');
-        
-        // Update the comment to include author details
-        newComment.author = {
-            _id: commentAuthorId,
-            username: populatedUser.username
-        };
-
+        // Respond with the newly added comment
         res.status(201).json({ message: 'Comment added', comment: newComment });
     } catch (error) {
         console.error('Error adding comment:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 
 router.get("/destinations/:destinationId/edit", isAuth, isOwner, async (req, res) => {

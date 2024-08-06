@@ -53,7 +53,15 @@ exports.countAll = () => {
   return Destination.countDocuments();
 }
 
-exports.getOne = (destinationId) => Destination.findById(destinationId).populate('author', 'username').populate('comments.author', 'username');
+
+exports.getOne = (destinationId) => {
+  return Destination.findById(destinationId)
+      .populate('author', 'username _id profilePhoto') 
+      .populate({
+          path: 'comments.author',
+          select: 'username _id profilePhoto'
+      });
+};
 
 
 exports.edit = (destinationId, destinationData) => Destination.findByIdAndUpdate(destinationId, destinationData, { runValidators: true })

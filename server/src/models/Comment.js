@@ -7,18 +7,16 @@ const commentSchema = new mongoose.Schema({
         required: true
     },
     text: {
-        type: mongoose.Schema.Types.Mixed,
+        type: String, // Ensure this is a string type
         required: [true, 'Comment cannot be empty']
     },
-    profilePhoto: String, 
+    profilePhoto: String,
     createdAt: {
         type: Date,
         default: Date.now
     }
 });
 
+const Comment = mongoose.model("Comment", commentSchema);
 
-const Comment = mongoose.model("Comment", commentSchema)
-
-
-module.exports = {Comment, commentSchema};
+module.exports = { Comment, commentSchema };

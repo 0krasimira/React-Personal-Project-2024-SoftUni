@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
         unique: true, 
         minLength: [6, "Your username should be at least 6 characters in length."]
     },
+    profilePhoto: {
+        type: String, 
+        default: '/images/profile_photo.png'
+    },    
     destinations: [{
         type: mongoose.Types.ObjectId,
         ref: 'Destination'
