@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/authContext';
+import { useNavigate } from 'react-router-dom';
 import DestinationItem from '../destination-item/DestinationItem';
 import styles from './Profile.module.css';
 
 const Profile = () => {
-    const { userId } = useAuth();
+    const { userId } = useParams();
+    const { logout } = useAuth();
     const [user, setUser] = useState(null);
     const [addedDestinations, setAddedDestinations] = useState([]);
     const [likedDestinations, setLikedDestinations] = useState([]);
@@ -14,6 +17,7 @@ const Profile = () => {
     const [uploadError, setUploadError] = useState(null);
     const [uploadSuccess, setUploadSuccess] = useState(null);
     const [fileName, setFileName] = useState('No file chosen');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserAndDestinations = async () => {
@@ -27,11 +31,15 @@ const Profile = () => {
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to fetch user data.');
+                    if (response.status === 401) {
+                        logout();
+                        navigate('/auth/login');
+                    } else {
+                        throw new Error('Failed to fetch user data.');
+                    }
                 }
 
                 const userData = await response.json();
-                console.log('Fetched user data:', userData); // Add this line for debugging
                 setUser(userData);
                 setAddedDestinations(userData.destinations || []);
                 setLikedDestinations(userData.likedDestinations || []);
@@ -43,7 +51,7 @@ const Profile = () => {
         };
 
         fetchUserAndDestinations();
-    }, [userId]);
+    }, [userId, logout, navigate]);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -67,12 +75,15 @@ const Profile = () => {
             });
     
             if (!response.ok) {
-                throw new Error('Failed to upload profile photo.');
+                if (response.status === 401) {
+                    logout();
+                    navigate('/auth/login');
+                } else {
+                    throw new Error('Failed to upload profile photo.');
+                }
             }
     
             const result = await response.json();
-            console.log(user.profilePhoto);
-
             setUser(prevUser => ({ ...prevUser, profilePhoto: result.profilePhoto }));
             setNewProfilePhoto(null);
             setFileName('No file chosen');
@@ -84,7 +95,6 @@ const Profile = () => {
             }, 3000);
 
         } catch (err) {
-            console.error('Error uploading profile photo:', err);
             setUploadError('Error uploading profile photo.');
         }
     };
@@ -92,8 +102,6 @@ const Profile = () => {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
     if (!user) return <div>No user data available</div>;
-
-    console.log('profile photo', user.profilePhoto);
 
     return (
         <div className={styles.container}>

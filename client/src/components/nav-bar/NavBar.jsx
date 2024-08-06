@@ -70,9 +70,6 @@ export default function NavBar() {
                                         <li><Link to="/all-destinations">
                                             <i className="fas fa-glasses"></i> Browse All Destinations
                                         </Link></li>
-                                        <li><Link to="/search-sites">
-                                            <i className="fas fa-search"></i> Search Sites
-                                        </Link></li>
                                     </ul>
                                 </li>
                                 <li><Link to="/contact-us">Contact Us</Link></li>

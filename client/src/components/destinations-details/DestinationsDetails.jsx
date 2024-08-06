@@ -26,7 +26,10 @@ export default function DestinationsDetails() {
                 const data = await response.json();
                 console.log('Fetched destination data:', data); // Debugging line
                 if (!response.ok) throw new Error(data.error || 'Failed to fetch destination details');
-
+                data.comments.forEach(comment => {
+                    console.log('Comment author:', comment.author);
+                    console.log('Comment author username:', comment.author?.username);
+                });
                 if (data && data.author) {
                     setDestination(data);
                     setComments(data.comments || []);
@@ -225,9 +228,9 @@ export default function DestinationsDetails() {
                         </>
                     ) : (
                         <span className={styles.likeCount}>
-                        <FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: '8px', color: '#F9629F' }} />
-                        {likeCount} {likeCount === 1 ? 'Like' : 'Likes'}
-                    </span>
+                            <FontAwesomeIcon icon={faThumbsUp} style={{ marginRight: '8px', color: '#F9629F' }} />
+                            {likeCount} {likeCount === 1 ? 'Like' : 'Likes'}
+                        </span>
                     )}
                 </div>
 
@@ -263,7 +266,7 @@ export default function DestinationsDetails() {
                                     <p className={styles.commentAuthor}>
                                         <strong>
                                             <p className={styles.postedBy}>posted by: {' '}</p>
-                                            {comment.author?.username || 'Anonymous'}
+                                            {comment.author?.username || 'Unknown'}
                                             {comment.author?._id === destination.author?._id && (
                                                 <span className={styles.authorTag}> Author</span>
                                             )}
@@ -271,6 +274,7 @@ export default function DestinationsDetails() {
                                     </p>
                                     <p className={styles.commentTime}>{formatTime(comment.createdAt)}</p>
                                 </div>
+
                             ))
                         )}
                         {comments.length > 3 && (
@@ -291,3 +295,6 @@ export default function DestinationsDetails() {
     );
 }
 
+//return everything to how it was when i last commited.!
+
+// todo continue from here - check why when i comment i show up as anonymous and the name appears only after refresh. check if i can add a clickable link as a comment

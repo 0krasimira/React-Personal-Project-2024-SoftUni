@@ -7,9 +7,10 @@ const commentSchema = new mongoose.Schema({
         required: true
     },
     text: {
-        type: String,
+        type: mongoose.Schema.Types.Mixed,
         required: [true, 'Comment cannot be empty']
     },
+    profilePhoto: String, 
     createdAt: {
         type: Date,
         default: Date.now

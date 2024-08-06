@@ -56,7 +56,7 @@ exports.login = async (username, password) => {
 exports.checkUsernameAvailability = async (username) => {
     try {
       const user = await User.findOne({ username });
-      return !user; // Return true if username is available, false if it's already taken
+      return !user; 
     } catch (error) {
       console.error('Error checking username availability:', error);
       throw new Error('Internal server error');
@@ -66,7 +66,7 @@ exports.checkUsernameAvailability = async (username) => {
   exports.checkEmailAvailability = async (email) => {
     try {
       const user = await User.findOne({ email });
-      return !user; // Return true if username is available, false if it's already taken
+      return !user; 
     } catch (error) {
       console.error('Error checking email availability:', error);
       throw new Error('Internal server error');

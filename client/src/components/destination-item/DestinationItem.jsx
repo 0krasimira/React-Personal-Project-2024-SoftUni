@@ -34,4 +34,3 @@ const DestinationItem = ({ destination }) => {
 
 export default DestinationItem;
 
-

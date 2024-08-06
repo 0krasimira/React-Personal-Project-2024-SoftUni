@@ -1,56 +1,75 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/authContext'; 
 import styles from './MostPopularDestinations.module.css';
 
 export default function MostPopularDestinations() {
-  const [mostPopularSites, setMostPopularSites] = useState([]);
+  const { isLoggedIn } = useAuth(); 
+  const [mostPopularDestinations, setMostPopularDestinations] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchMostPopularSites = async () => {
+    const fetchMostPopularDestinations = async () => {
       try {
         const response = await fetch('http://localhost:3000/most-popular');
         const data = await response.json();
-        setMostPopularSites(data);
+        setMostPopularDestinations(data);
       } catch (error) {
-        console.error('Error fetching most popular sites:', error);
+        console.error('Error fetching most popular destinations:', error);
       }
     };
 
-    fetchMostPopularSites();
+    fetchMostPopularDestinations();
   }, []);
 
-  const seeMore = (site) => {
-    navigate(`/destinations/${site._id}`);
+  const seeMore = (destination) => {
+    navigate(`/destinations/${destination._id}`);
+  };
+
+  const goToProfile = (userId) => {
+    if (isLoggedIn) {
+      navigate(`/auth/${userId}`);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
   return (
     <aside className={styles.sidebar}>
       <div className={styles.mostPopular}>
         <h2>Most Popular Destinations</h2>
-        {mostPopularSites.length > 0 ? (
-          mostPopularSites.map(site => (
-            <div key={site._id} className={styles.popularSite}>
-              <div className={styles.siteInfo}>
-                <div className={styles.siteDetails}>
-                  <h3>{site.name}</h3>
-                  <p>Date Added: {new Date(site.createdAt).toLocaleDateString()}</p>
-                  <p>Likes: {site.likes?.length}</p>
-                  <p>Added by: <span className={styles.addedBy}>{site.author.username}</span></p>
+        {mostPopularDestinations.length > 0 ? (
+          mostPopularDestinations.map(destination => (
+            <div key={destination._id} className={styles.popularDestination}>
+              <div className={styles.destinationInfo}>
+                <div className={styles.destinationDetails}>
+                  <h3>{destination.name}</h3>
+                  <p>Date Added: {formatDate(destination.createdAt)}</p>
+                  <p>Likes: {destination.likes?.length}</p>
+                  <p>
+                    Added by: <span 
+                      className={`${styles.addedBy} ${isLoggedIn ? styles.clickable : ''}`} 
+                      onClick={() => isLoggedIn && goToProfile(destination.author._id)}
+                    >
+                      {destination.author.username}
+                    </span>
+                  </p>
                 </div>
                 <div className={styles.imageContainer}>
-                  <img src={site.imageUrl} alt="Site Image" className={styles.siteImage} />
-                  <button onClick={() => seeMore(site)} className={styles.seeMoreButton}>See More</button>
+                  <img src={destination.imageUrl} alt="Destination Image" className={styles.destinationImage} />
+                  <button onClick={() => seeMore(destination)} className={styles.seeMoreButton}>See More</button>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <p>No popular sites available.</p>
+          <p>No popular destinations available.</p>
         )}
-        <Link to="/all-destinations" className={styles.seeAllSites}>See All Destinations</Link>
+        <Link to="/all-destinations" className={styles.seeAllDestinations}>See All Destinations</Link>
       </div>
     </aside>
   );
 }
-

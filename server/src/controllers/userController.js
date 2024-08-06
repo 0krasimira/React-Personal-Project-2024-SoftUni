@@ -118,4 +118,3 @@ router.post('/:userId/upload-profile-photo', isAuth, upload.single('profilePhoto
 
 
 module.exports = router;
-

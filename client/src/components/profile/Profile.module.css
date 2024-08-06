@@ -1,6 +1,4 @@
-/* Profile.module.css */
-
-/* Base styles for larger screens */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 .container {
     padding: 2em 2em 12em 2em;
     background-color: #f2e1e9;
@@ -141,18 +139,14 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-family: 'Josefin Sans', sans-serif
 }
 
 .uploadButton:hover {
     background-color: #0056b3;
 }
 
-/* Success and error messages */
-.successMessage {
-    color: #28a745;
-    margin-top: 10px;
-}
-
+/* Error message remains unchanged */
 .errorMessage {
     color: #dc3545;
     margin-top: 10px;
@@ -227,3 +221,11 @@
         padding: 8px 16px;
     }
 }
+
+
+
+/*  1. todo continue from here make the success message gradually fade out
+    2. fix the aside section styling
+    3. make the profile clickable and visible for other users, too (instead of my added destinations - username's added destinations)
+    4. fix routes to redirect to login if user is not logged
+*/
