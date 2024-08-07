@@ -124,6 +124,7 @@ export default function Register() {
               type={passwordVisible ? 'text' : 'password'}
               name="password"
               placeholder="Password"
+              autoComplete='Password'
               value={form.password}
               onChange={handleChange}
               className={styles.inputField} 
@@ -142,6 +143,7 @@ export default function Register() {
               type={repeatPasswordVisible ? 'text' : 'password'}
               name="repeatPassword"
               placeholder="Confirm Password"
+              autoComplete='repeatPassword'
               value={form.repeatPassword}
               onChange={handleChange}
               className={styles.inputField} 

@@ -1,4 +1,3 @@
-/* Importing font */
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
 * {
@@ -7,22 +6,21 @@
 
 .sidebar {
 
-    max-width: 300px; /* Set a max-width for sidebar */
+    max-width: 300px; 
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff; /* Background color to ensure no white space issues */
-    box-sizing: border-box; /* Include padding in element's width and height */
+    background-color: #ffffff; 
+    box-sizing: border-box;
 }
 
-/* Most popular section styling */
 .mostPopular {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between items */
+    gap: 20px; 
 }
 
-/* Heading style within Most Popular section */
+
 .mostPopular h2 {
     margin: 0 0 20px;
     font-size: 1.5rem;
@@ -30,22 +28,20 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
-/* Popular destination styling */
 .popularDestination {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Space between elements in the destination */
+    gap: 10px; 
     border-bottom: 1px solid #ddd;
     padding-bottom: 20px;
 }
 
-/* Destination info styling */
+
 .destinationInfo {
     display: flex;
     flex-direction: column;
 }
 
-/* Destination details styling */
 .destinationDetails h3 {
     margin: 0 0 10px;
     font-size: 1.25rem;
@@ -53,22 +49,19 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
-/* Paragraph style within destination details */
 .destinationDetails p {
     margin: 0;
     color: #666;
 }
 
-/* Image container styling */
 .imageContainer {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Space between image and button */
+    gap: 10px; 
     margin-top: 10px;
     position: relative;
 }
 
-/* Destination image styling */
 .destinationImage {
     width: 100%;
     height: auto;
@@ -76,10 +69,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Button to see more destinations */
 .seeMoreButton {
     display: block;
-    width: 100%; /* Full width of the container */
+    width: 100%; 
     padding: 10px;
     background-color: #007bff;
     color: white;
@@ -88,14 +80,13 @@
     cursor: pointer;
     text-align: center;
     font-size: 16px;
-    margin-top: 10px; /* Space above the button */
+    margin-top: 10px; 
 }
 
 .seeMoreButton:hover {
     background-color: #0056b3;
 }
 
-/* Link to see all destinations */
 .seeAllDestinations {
     display: block;
     margin-top: 20px;
@@ -109,7 +100,6 @@
     text-decoration: underline;
 }
 
-/* Author style */
 .addedBy {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 14px;
@@ -118,13 +108,12 @@
     margin-top: 5px;
 }
 
-.clickable {
+/* .clickable {
     cursor: pointer;
     text-decoration: underline;
 }
 
 .clickable:hover {
     color: #0056b3;
-}
+} */
 
-/*todo check if i can position the button better*/

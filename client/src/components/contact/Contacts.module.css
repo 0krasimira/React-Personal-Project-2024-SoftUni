@@ -1,32 +1,28 @@
-/* Importing the font */
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
-/* Overall Page */
 body {
-    background-color: #f2e1e9; /* Light background color */
-    font-family: 'Josefin Sans', sans-serif; /* Ensure font is applied site-wide */
+    background-color: #f2e1e9; 
+    font-family: 'Josefin Sans', sans-serif;
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Ensure body takes full height */
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; /* For footer alignment */
+    flex-direction: column; 
 }
 
-/* Wrapper for the Form */
 .wrapper {
-    width: 50%; /* Set width to 50% of the viewport width */
-    max-width: 600px; /* Maximum width for larger screens */
-    margin: 50px auto; /* Center the form horizontally */
+    width: 50%; 
+    max-width: 600px; 
+    margin: 50px auto; 
     padding: 40px;
-    background: #ffffff; /* White background for the form */
-    border: 1px solid #ddd; /* Border around the form */
+    background: #ffffff; 
+    border: 1px solid #ddd; 
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    box-sizing: border-box; /* Ensure padding does not affect width */
-    position: relative; /* Ensure it does not overlap with other content */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+    box-sizing: border-box; 
+    position: relative; 
 }
 
-/* Header Style */
 .header {
     font-size: 24px;
     color: #a0496c;
@@ -34,9 +30,8 @@ body {
     margin-bottom: 20px;
 }
 
-/* Left Section Styles */
 .leftSection {
-    margin-bottom: 30px; /* Spacing between sections */
+    margin-bottom: 30px; 
 }
 
 .contactInfo {
@@ -44,86 +39,76 @@ body {
     align-items: center;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
-    font-family: 'Josefin Sans', sans-serif; /* Apply font to contact info */
+    font-family: 'Josefin Sans', sans-serif; 
 }
 
 .icon {
     margin-right: 0.75rem;
-    color: #a0496c; /* Matching color for icons */
+    color: #a0496c; 
 }
 
-/* Right Section Styles */
 .rightSection {
-    padding: 0; /* No extra padding */
+    padding: 0;
 }
 
 .rightSection h2 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    color: #a0496c; /* Matching color for headings */
-    border-bottom: 2px solid #a0496c; /* Underline color */
+    color: #a0496c; 
+    border-bottom: 2px solid #a0496c; 
     padding-bottom: 0.5rem;
-    font-family: 'Josefin Sans', sans-serif; /* Ensure heading font consistency */
+    font-family: 'Josefin Sans', sans-serif; 
 }
 
-/* Form Styles */
 form {
     display: flex;
     flex-direction: column;
 }
 
-/* Field Container */
 .field {
     margin-bottom: 20px;
-    position: relative; /* Positioning for icons and errors */
+    position: relative; 
 }
 
-/* Input Area */
 .inputArea {
-    position: relative; /* For positioning the icon inside the input */
+    position: relative; 
 }
 
-/* Input Styles */
 .formInput {
     width: 100%;
-    padding: 10px 15px; /* Adjust padding for better placement */
+    padding: 10px 15px;
     font-size: 14px;
-    color: #333; /* Darker text color for better readability */
+    color: #333; 
     border: 1px solid #e3d6dd;
     border-radius: 5px;
-    box-sizing: border-box; /* Ensure padding does not affect width */
-    margin: 0; /* Ensure no extra margin affects positioning */
-    line-height: 1.5; /* Align text properly */
-    font-family: 'Josefin Sans', sans-serif; /* Apply font to input text */
+    box-sizing: border-box; 
+    margin: 0; 
+    line-height: 1.5; 
+    font-family: 'Josefin Sans', sans-serif; 
 }
 
-/* Adjust placeholder text alignment */
 .formInput::placeholder {
-    color: #aaa; /* Light color for placeholder */
-    opacity: 1; /* Ensure placeholder is visible */
-    font-family: 'Josefin Sans', sans-serif; /* Ensure font consistency */
-    padding-left: 15px; /* Consistent padding for all placeholders */
-    line-height: 1.5; /* Align placeholder text with input text */
+    color: #aaa; 
+    opacity: 1; 
+    font-family: 'Josefin Sans', sans-serif; 
+    padding-left: 15px; 
+    line-height: 1.5; 
 }
 
-/* Handle textarea specifically */
 textarea.formInput {
-    resize: vertical; /* Allow vertical resize */
+    resize: vertical; 
 }
 
-/* Placeholder adjustment on focus */
 .formInput:focus::placeholder {
-    color: #888; /* Slightly darker placeholder on focus */
+    color: #888; 
 }
 
-/* Input focus styles */
 .formInput:focus {
     border-color: #a0496c;
     outline: none;
     box-shadow: 0 0 0 2px rgba(160, 73, 108, 0.25);
 }
 
-/* Submit Button */
 .formButton {
     background: #a0496c;
     color: #ffffff;
@@ -144,20 +129,17 @@ textarea.formInput {
     background: #7c0032;
 }
 
-/* Icons */
 .errorIcon {
     position: absolute;
     right: 10px;
     color: #f63c85;
 }
 
-/* Error Text */
 .errorTxt {
     color: #f63c85;
     font-size: 12px;
 }
 
-/* Success Message */
 .successMessage {
     margin-top: 1.5rem;
     padding: 1rem;

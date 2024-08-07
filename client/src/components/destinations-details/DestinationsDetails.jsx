@@ -306,4 +306,3 @@ export default function DestinationsDetails() {
 
 
 
-//todo pickup from here. check why the commenter's profilephoto is not showing in the comments

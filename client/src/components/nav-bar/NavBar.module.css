@@ -1,7 +1,7 @@
-/* Import the Google Font in your CSS file or global styles */
+
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
-/* Navbar container styles */
+
 .siteNavbar {
     background-color: #f0f0f0;
     padding: 10px 0;
@@ -10,7 +10,7 @@
     z-index: 1000;
 }
 
-/* Navigation styles */
+
 .siteNavigation {
     display: flex;
     align-items: center;
@@ -18,13 +18,13 @@
     padding: 0 20px;
 }
 
-/* Logo container styles */
+
 .logoContainer {
     display: flex;
     align-items: center;
 }
 
-/* Logo styles */
+
 .logo {
     width: 50px;
     height: 50px;
@@ -34,7 +34,7 @@
     border: 2px solid #b0b0b0;
 }
 
-/* Site logo text */
+
 .siteLogo a {
     color: #333;
     text-decoration: none;
@@ -43,7 +43,7 @@
     margin-left: 10px;
 }
 
-/* Navigation menu styles */
+
 .siteMenu {
     display: flex;
     list-style: none;
@@ -54,7 +54,7 @@
     transition: max-height 0.3s ease-in-out;
 }
 
-/* Menu items styles */
+
 .siteMenu li {
     position: relative;
     margin-right: 20px;
@@ -67,7 +67,7 @@
     color: #555;
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
-    vertical-align: middle; /* Ensure proper vertical alignment */
+    vertical-align: middle; 
 }
 
 .siteMenu a:hover {
@@ -75,7 +75,7 @@
     color: #333;
 }
 
-/* Dropdown menu styles */
+
 .dropdown {
     display: none;
     position: absolute;
@@ -87,8 +87,8 @@
     margin: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     min-width: 160px;
-    width: 100%; /* Ensure the dropdown spans the full width */
-    box-sizing: border-box; /* Include padding and border in element's total width */
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .hasChildren:hover .dropdown {
@@ -96,23 +96,22 @@
 }
 
 .dropdown li {
-    width: 100%; /* Ensure list items span the full width */
+    width: 100%; 
 }
 
 .dropdown li a {
     padding: 10px 15px;
     color: #555;
     display: flex;
-    align-items: center; /* Ensure icons and text are centered vertically */
-    width: 100%; /* Ensure the anchor spans the full width */
-    box-sizing: border-box; /* Include padding in the total width */
+    align-items: center; 
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .dropdown li a:hover {
     background-color: #e0e0e0;
 }
 
-/* Toggle button styles */
 .siteMenuToggle {
     display: none;
     flex-direction: column;
@@ -130,7 +129,6 @@
     transition: background-color 0.3s ease-in-out;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
     .siteNavigation {
         flex-direction: column;
@@ -147,7 +145,7 @@
     }
 
     .siteMenuActive {
-        max-height: 500px; /* Adjust based on the content height */
+        max-height: 500px; 
     }
 
     .siteMenuToggle {
@@ -155,18 +153,18 @@
     }
 
     .siteMenuToggle.active .iconMenu {
-        background-color: #007bff; /* Color for the active state */
+        background-color: #007bff; 
     }
 }
 
 /* Font Awesome icon styles */
 .fas {
-    margin-right: 8px; /* Space between icon and text */
-    vertical-align: middle; /* Ensure icons align with text baseline */
+    margin-right: 8px; 
+    vertical-align: middle;
 }
 
 .username {
-    color: #8d1a1c; /* Change to your desired color */
-    font-weight: bold; /* Optional: makes the text bold */
+    color: #8d1a1c; 
+    font-weight: bold; 
 }
 

@@ -9,7 +9,7 @@
 
 .mainContent {
     flex: 1;
-    background-color: #d3c7b2; /* or your desired background color */
+    background-color: #d3c7b2; 
 }
 
 .aboutTitle {
@@ -52,6 +52,6 @@ background-color: rgba(77, 64, 64, 0.481);
 
 .emphasis {
     font-weight: bold;
-    color: #362121; /* or your desired emphasis color */
+    color: #362121; 
 }
 

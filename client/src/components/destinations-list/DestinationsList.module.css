@@ -4,11 +4,11 @@
 
 .container {
     padding: 20px 20px 80px 20px;
-    background-color: #f2e1e9; /* Light background color */
+    background-color: #f2e1e9; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh; /* Adjusted height to fit content */
+    min-height: 100vh; 
     font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -19,18 +19,18 @@
 }
 
 .grid {
-    display: flex; /* Use Flexbox for alignment */
-    flex-wrap: wrap; /* Allow items to wrap if needed */
-    justify-content: center; /* Center items horizontally */
-    gap: 20px; /* Adjust the gap between items */
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 20px; 
     width: 100%;
-    max-width: 1200px; /* Max width for larger screens */
-    margin: 0 auto; /* Center the grid container */
+    max-width: 1200px; 
+    margin: 0 auto; 
 }
 
 .card {
-    flex: 1 1 calc(33.333% - 20px); /* Adjust item size to take up approximately one-third of the container minus gap */
-    max-width: 300px; /* Optional: Limit the max width of each card */
+    flex: 1 1 calc(33.333% - 20px); 
+    max-width: 300px; 
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -38,8 +38,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    position: relative; /* For positioning the button */
-    min-width: 250px; /* Ensure a minimum width for each card */
+    position: relative; 
+    min-width: 250px; 
 }
 
 
@@ -51,7 +51,7 @@
 
 .info {
     padding: 10px;
-    flex: 1; /* Ensure info section takes up available space */
+    flex: 1; 
 }
 
 .name {
@@ -149,24 +149,21 @@
     margin: 0 10px;
 }
 
-/* Search input field and buttons styling */
 .searchWrapper {
     display: flex;
-    flex-direction: column; /* Align items vertically */
+    flex-direction: column; 
     align-items: center;
     width: 100%;
-    max-width: 1200px; /* Ensure it fits the container */
-    margin-bottom: 3em; /* Increased space below the entire search section */
+    max-width: 1200px; 
+    margin-bottom: 3em; 
 }
 
-/* Wrapper for the search input field and icon */
 .searchInputWrapper {
     position: relative;
     width: 100%;
-    max-width: 600px; /* Limit the width of the input field */
+    max-width: 600px; 
 }
 
-/* Search input field styling */
 .searchInput {
     width: 100%;
     height: 50px;
@@ -179,30 +176,27 @@
     margin-bottom: 1em;
 }
 
-/* Search icon styling */
 .searchIcon {
     position: absolute;
-    left: 15px; /* Space from the left edge */
+    left: 15px; 
     top: 50%;
-    transform: translateY(-50%); /* Center the icon vertically */
-    font-size: 22px; /* Larger icon size */
+    transform: translateY(-50%); 
+    font-size: 22px; 
     color: #aaa;
 }
 
-/* Wrapper for search and clear buttons */
 .buttonWrapper {
     display: flex;
-    gap: 15px; /* Space between buttons */
-    margin-top: 1em; /* Space above the buttons */
+    gap: 15px; 
+    margin-top: 1em; 
 }
 
-/* Button styling */
 .searchButton, .clearButton {
     background-color: #a0496c;
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 12px 24px; /* Increase padding for a larger button */
+    padding: 12px 24px; 
     font-size: 16px;
     cursor: pointer;
 }

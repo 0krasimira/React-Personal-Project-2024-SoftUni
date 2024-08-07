@@ -7,7 +7,7 @@ const commentSchema = new mongoose.Schema({
         required: true
     },
     text: {
-        type: String, // Ensure this is a string type
+        type: String, 
         required: [true, 'Comment cannot be empty']
     },
     profilePhoto: String,

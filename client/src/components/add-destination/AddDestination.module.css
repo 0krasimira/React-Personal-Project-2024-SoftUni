@@ -1,20 +1,17 @@
-/* AddDestination.module.css */
 
-/* General Styles for the Form */
 .wrapper {
-    width: 50%; /* Set width to 50% of the viewport width */
-    max-width: 600px; /* Maximum width for larger screens */
-    margin: 50px auto; /* Center the form horizontally */
+    width: 50%; 
+    max-width: 600px; 
+    margin: 50px auto; 
     padding: 40px;
-    background: #ffffff; /* White background for the form */
-    border: 1px solid #ddd; /* Border around the form */
+    background: #ffffff; 
+    border: 1px solid #ddd; 
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    box-sizing: border-box; /* Ensure padding does not affect width */
-    position: relative; /* Ensure it does not overlap with other content */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+    box-sizing: border-box; 
+    position: relative; 
 }
 
-/* Header Style */
 header {
     font-size: 24px;
     color: #a0496c;
@@ -22,46 +19,42 @@ header {
     margin-bottom: 20px;
 }
 
-/* Form Style */
 form {
     display: flex;
     flex-direction: column;
 }
 
-/* Field Container */
 .field {
     margin-bottom: 20px;
-    position: relative; /* Positioning for icons and errors */
+    position: relative; 
 }
 
-/* Input Field Style */
+
 .inputField {
-    width: 100%; /* Full width of the form */
-    padding: 10px 30px; /* Uniform padding for all sides */
+    width: 100%;
+    padding: 10px 30px; 
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
-    font-family: 'Arial', sans-serif; /* Consistent font */
-    color: #ababab; /* Darker text color for better readability */
-    background-color: #fff; /* White background */
-    box-sizing: border-box; /* Includes padding and border in width */
+    font-family: 'Arial', sans-serif; 
+    color: #ababab; 
+    background-color: #fff; 
+    box-sizing: border-box; 
 }
 
-/* Select and Textarea Style (Consistent with inputField) */
 select,
 textarea {
-    width: 100%; /* Full width of the form */
-    padding: 10px 30px; /* Uniform padding */
+    width: 100%; 
+    padding: 10px 30px; 
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
-    font-family: 'Arial', sans-serif; /* Consistent font */
+    font-family: 'Arial', sans-serif; 
     color: #ababab;
-    background-color: #fff; /* White background */
-    box-sizing: border-box; /* Includes padding and border in width */
+    background-color: #fff; 
+    box-sizing: border-box; 
 }
 
-/* Submit Button */
 .submitButton {
     background: #a0496c;
     color: #ffffff;
@@ -70,14 +63,13 @@ textarea {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%; /* Full width of the form */
+    width: 100%; 
 }
 
 .submitButton:hover {
     background: #7c0032;
 }
 
-/* Error Text Style */
 .errorTxt {
     color: #f63c85;
     font-size: 12px;

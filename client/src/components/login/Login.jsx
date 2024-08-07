@@ -100,6 +100,7 @@ export default function Login() {
                             type={passwordVisible ? 'text' : 'password'}
                             name="password"
                             placeholder="Password"
+                            autoComplete='Password'
                             value={form.password}
                             onChange={handleChange}
                             className={styles.inputField}

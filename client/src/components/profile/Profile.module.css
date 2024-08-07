@@ -4,7 +4,7 @@
     background-color: #f2e1e9;
     display: flex;
     justify-content: center;
-    align-items: center; /* Center vertically */
+    align-items: center; 
     font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -20,7 +20,7 @@
     padding: 20px;
     box-sizing: border-box;
     font-family: 'Josefin Sans', sans-serif;
-    margin-bottom: 40px; /* Add spacing from the footer */
+    margin-bottom: 40px; 
 }
 
 .profileHeader {
@@ -46,7 +46,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    gap: 20px; /* Add space between containers */
+    gap: 20px; 
 }
 
 .listContainer {
@@ -61,9 +61,9 @@
 
 .horizontalScroll {
     display: flex;
-    overflow-x: auto; /* Enable horizontal scrolling */
-    gap: 10px; /* Space between items */
-    padding: 10px 0; /* Padding for better scroll appearance */
+    overflow-x: auto; 
+    gap: 10px;
+    padding: 10px 0; 
 }
 
 .horizontalScroll::-webkit-scrollbar {
@@ -95,16 +95,16 @@
     background-color: #0056b3;
 }
 
-/* Flex container for file input and buttons */
+
 .fileInputWrapper {
-    display: flex; /* Ensure buttons are next to each other */
+    display: flex; 
     align-items: center;
-    gap: 10px; /* Add space between buttons */
+    gap: 10px; 
     margin: 20px auto;
 }
 
 .fileInput {
-    display: none; /* Hide default file input */
+    display: none;
 }
 
 .fileInputLabel {

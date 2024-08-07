@@ -6,7 +6,7 @@ const Destination = require("../models/Destination");
 
 
 exports.auth = async (req, res, next) => {
-    const token = req.cookies["token"] || req.headers.authorization?.split(' ')[1]; // Check both cookies and headers
+    const token = req.cookies["token"] || req.headers.authorization?.split(' ')[1]; 
 
     if (!token) {
         return next(); // Proceed without user information if no token
@@ -20,7 +20,7 @@ exports.auth = async (req, res, next) => {
         next();
     } catch (error) {
         res.clearCookie("token"); // Clear invalid token
-        next(); // Proceed to next middleware or route handler
+        next(); 
     }
 };
 
