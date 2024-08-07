@@ -24,13 +24,12 @@ export default function DestinationsDetails() {
             try {
                 const response = await fetch(`http://localhost:3000/destinations/${destinationId}`);
                 const data = await response.json();
-                console.log('Fetched destination data:', data); // Debugging line
                 if (!response.ok) throw new Error(data.error || 'Failed to fetch destination details');
 
                 if (data && data.author) {
                     setDestination(data);
                     setComments(data.comments || []);
-                    setIsLiked(data.likes.includes(userId)); // Check if the user has already liked the destination
+                    setIsLiked(data.likes.includes(userId));
                     setLikeCount(data.likes.length); // Set the initial like count
                 } else {
                     setError('Destination data is incomplete.');
@@ -86,20 +85,20 @@ export default function DestinationsDetails() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ userId }), // Only send userId
+                body: JSON.stringify({ userId }), 
             });
             const data = await response.json();
             if (!response.ok) throw new Error(data.error || 'Failed to like/unlike destination');
 
             setIsLiked(!isLiked); // Toggle the like state
-            setLikeCount(likeCount + (isLiked ? -1 : 1)); // Adjust the like count accordingly
+            setLikeCount(likeCount + (isLiked ? -1 : 1)); 
         } catch (err) {
             setError(err.message);
         }
     };
 
     const handleEdit = () => {
-        navigate(`/destinations/${destinationId}/edit`); // Redirect to the edit page
+        navigate(`/destinations/${destinationId}/edit`); 
     };
 
     const handleDelete = async () => {
@@ -116,7 +115,7 @@ export default function DestinationsDetails() {
 
             if (response.ok) {
                 alert('Destination deleted successfully!');
-                navigate('/all-destinations'); // Redirect to the destinations list
+                navigate('/all-destinations'); 
             } else {
                 const contentType = response.headers.get('content-type');
                 let errorMessage = 'Failed to delete destination';

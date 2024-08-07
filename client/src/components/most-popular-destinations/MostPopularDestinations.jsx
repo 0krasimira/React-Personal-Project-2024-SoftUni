@@ -11,6 +11,7 @@ export default function MostPopularDestinations() {
       try {
         const response = await fetch('http://localhost:3000/most-popular');
         const data = await response.json();
+        console.log('Fetched Most Popular Sites:', data); // Log the data to verify
         setMostPopularSites(data);
       } catch (error) {
         console.error('Error fetching most popular sites:', error);

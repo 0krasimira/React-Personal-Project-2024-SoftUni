@@ -71,6 +71,7 @@ router.get('/most-popular', async (req, res) => {
 });
 
 
+
 router.get('/add-destination', isAuth, async (req, res) => {
     res.status(405).json({ error: 'GET method not allowed for this endpoint - add' });
 })

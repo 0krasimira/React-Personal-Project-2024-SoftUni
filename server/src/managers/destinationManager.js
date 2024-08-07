@@ -29,13 +29,13 @@ exports.getAll = (skip = 0, limit = 6, searchRegex = null) => {
   } : {}; // If no search regex is provided, return all documents
 
   return Destination.find(query)
-    .skip(skip) // Skip the number of documents specified by `skip`
-    .limit(limit) // Limit the number of documents returned to `limit`
+    .skip(skip) // Skip the number of documents to `skip` from the beginning of the results; for pagination
+    .limit(limit) // limits the number of results per page
     .populate('author', 'username'); // Populate author field with username
 };
 
 // Updated countAll method to include search functionality
-exports.countAll = (searchRegex = null) => {
+exports.countAll = (searchRegex = null) => { // searchregex is null by default, if provided, it will filter only the results that include it
   // Construct the query object
   const query = searchRegex ? {
     $or: [
@@ -45,7 +45,7 @@ exports.countAll = (searchRegex = null) => {
     ]
   } : {}; // If no search regex is provided, count all documents
 
-  return Destination.countDocuments(query);
+  return Destination.countDocuments(query); // counts the number of documents in the destination collection that match this query
 };
 
 
@@ -67,17 +67,29 @@ exports.getOne = (destinationId) => {
 exports.edit = (destinationId, destinationData) => Destination.findByIdAndUpdate(destinationId, destinationData, { runValidators: true })
 
 exports.getMostPopularDestinations = async () => {
-    try {
-      const mostPopularDestinations = await Destination.find()
-        .sort({ likes: -1 }) // Sort by likes in descending order
-        .limit(3) // Limit to 3 most popular sites
-        .populate('author', 'username'); // Populate author with username field
-  
-      return mostPopularDestinations;
-    } catch (error) {
-      throw error;
-    }
-  };
+  try {
+    const destinations = await Destination.find().populate('author', 'username');
+
+    // Sort destinations based on likes count and creation date
+    const sortedDestinations = destinations.sort((a, b) => {
+      const likeDifference = b.likes.length - a.likes.length;
+      if (likeDifference !== 0) {
+        return likeDifference;
+      }
+      // If likes are the same, sort by creation date (newest first)
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+
+    // Limit to top 3 most popular destinations
+    const mostPopularDestinations = sortedDestinations.slice(0, 3);
+
+    return mostPopularDestinations;
+  } catch (error) {
+    console.error('Error fetching most popular destinations:', error);
+    throw error;
+  }
+};
+
 
   
   exports.likeDestination = async (destinationId, userId) => {
