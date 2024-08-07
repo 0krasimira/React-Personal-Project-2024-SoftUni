@@ -40,7 +40,7 @@ export default function Register() {
 
     const newErrors = {};
 
-    // Basic validation
+    // validation
     if (!form.email) newErrors.email = 'Email is required.';
     if (!form.username) newErrors.username = 'Username is required.';
     if (!form.password) newErrors.password = 'Password is required.';
@@ -59,9 +59,10 @@ export default function Register() {
         },
         body: JSON.stringify(form),
       });
+      
 
       const data = await response.json();
-
+      
       if (!response.ok) {
         if (data.errors) {
           // Handle specific errors from backend

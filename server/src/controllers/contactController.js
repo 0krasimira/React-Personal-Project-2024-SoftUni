@@ -23,4 +23,3 @@ router.post('/contacts', async (req, res) => {
   
 module.exports = router
 
-// to do if there is time: write a controller and function to delete a contact query once it is answered 
