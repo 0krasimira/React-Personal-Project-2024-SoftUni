@@ -19,8 +19,19 @@ export default function Register() {
     repeatPassword: '',
   });
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handlePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const handleRepeatPasswordVisibility = () => {
+    setRepeatPasswordVisible(!repeatPasswordVisible);
   };
 
   const handleSubmit = async (e) => {
@@ -88,7 +99,6 @@ export default function Register() {
               onChange={handleChange}
               className={styles.inputField} 
             />
-            {errors.email && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
           {errors.email && <div className={styles.errorTxt}>{errors.email}</div>}
         </div>
@@ -103,7 +113,6 @@ export default function Register() {
               onChange={handleChange}
               className={styles.inputField} 
             />
-            {errors.username && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
           </div>
           {errors.username && <div className={styles.errorTxt}>{errors.username}</div>}
         </div>
@@ -111,14 +120,17 @@ export default function Register() {
           <div className={styles.inputArea}>
             <i className={`${styles.icon} fas fa-lock`}></i>
             <input
-              type="password"
+              type={passwordVisible ? 'text' : 'password'}
               name="password"
               placeholder="Password"
               value={form.password}
               onChange={handleChange}
               className={styles.inputField} 
             />
-            {errors.password && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
+            <i 
+              className={`${styles.eyeIcon} fas ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`} 
+              onClick={handlePasswordVisibility}
+            ></i>
           </div>
           {errors.password && <div className={styles.errorTxt}>{errors.password}</div>}
         </div>
@@ -126,14 +138,17 @@ export default function Register() {
           <div className={styles.inputArea}>
             <i className={`${styles.icon} fas fa-lock`}></i>
             <input
-              type="password"
+              type={repeatPasswordVisible ? 'text' : 'password'}
               name="repeatPassword"
               placeholder="Confirm Password"
               value={form.repeatPassword}
               onChange={handleChange}
               className={styles.inputField} 
             />
-            {errors.repeatPassword && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
+            <i 
+              className={`${styles.eyeIcon} fas ${repeatPasswordVisible ? 'fa-eye-slash' : 'fa-eye'}`} 
+              onClick={handleRepeatPasswordVisibility}
+            ></i>
           </div>
           {errors.repeatPassword && <div className={styles.errorTxt}>{errors.repeatPassword}</div>}
         </div>

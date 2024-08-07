@@ -145,3 +145,41 @@ input[type="submit"]:hover {
     color: #7c0032;
 }
 
+/* Icons */
+.icon {
+    position: absolute;
+    left: 10px;
+    color: #a0496c;
+    pointer-events: none;
+}
+
+/* Eye Icon for Password Visibility */
+.eyeIcon {
+    position: absolute;
+    right: 10px; /* Position the eye icon inside the input */
+    cursor: pointer; /* Pointer cursor on hover */
+    color: #a0496c; /* Icon color */
+    font-size: 16px; /* Adjust size if necessary */
+    pointer-events: auto; /* Ensure icon is clickable */
+}
+
+/* Adjusted for inputArea */
+.inputArea {
+    position: relative; /* For positioning the icon inside the input */
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 40px 10px 30px; /* Adjusted padding for icons */
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #e3d6dd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 0;
+    line-height: 1.5;
+}

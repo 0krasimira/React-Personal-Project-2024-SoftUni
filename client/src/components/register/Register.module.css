@@ -91,12 +91,6 @@ input[type="submit"]:hover {
 }
 
 /* Error Icons and Text */
-.errorIcon {
-    position: absolute;
-    right: 10px;
-    color: #f63c85;
-}
-
 .errorTxt {
     color: #f63c85;
     font-size: 12px;
@@ -118,4 +112,21 @@ input[type="submit"]:hover {
 
 .signTxt a:hover {
     color: #7c0032;
+}
+
+/* Eye Icon for Password Visibility */
+.eyeIcon {
+    position: absolute;
+    right: 10px; /* Position the eye icon inside the input */
+    cursor: pointer; /* Pointer cursor on hover */
+    color: #a0496c; /* Icon color */
+    font-size: 16px; /* Adjust size if necessary */
+    pointer-events: auto; /* Ensure icon is clickable */
+}
+
+/* Adjusted for inputArea */
+.inputArea {
+    position: relative; /* For positioning the icon inside the input */
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
 }

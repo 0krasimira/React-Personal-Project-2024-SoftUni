@@ -18,8 +18,14 @@ export default function Login() {
         server: '', // New state for server-side errors
     });
 
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
+    };
+
+    const handlePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
     };
 
     const handleSubmit = async (e) => {
@@ -91,7 +97,7 @@ export default function Login() {
                 <div className={styles.field}>
                     <div className={styles.inputArea}>
                         <input
-                            type="password"
+                            type={passwordVisible ? 'text' : 'password'}
                             name="password"
                             placeholder="Password"
                             value={form.password}
@@ -99,6 +105,10 @@ export default function Login() {
                             className={styles.inputField}
                         />
                         <i className={`${styles.icon} fas fa-lock`}></i>
+                        <i 
+                          className={`${styles.eyeIcon} fas ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`} 
+                          onClick={handlePasswordVisibility}
+                        ></i>
                         {errors.password && <i className={`${styles.errorIcon} fas fa-exclamation-circle`}></i>}
                     </div>
                     {errors.password && <div className={styles.errorTxt}>{errors.password}</div>}
