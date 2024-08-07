@@ -90,7 +90,7 @@ export default function DestinationsList() {
                 </div>
             </div>
             {destinations.length === 0 ? (
-                <p className={styles.noDestinations}>No destinations found.</p>
+                <p className={styles.noDestinations}>No destinations found matching this criteria.</p>
             ) : (
                 <>
                     <div className={styles.grid}>
