@@ -255,7 +255,7 @@ export default function DestinationsDetails() {
                             <p>No comments yet. Be the first person to add a comment.</p>
                         ) : (
                             displayedComments.map((comment, index) => {
-                                console.log('Comment author profile picture URL:', comment.author?.profilePhoto); // Debugging line
+                                console.log('Comment author profile picture URL:', comment.author?.profilePhoto); 
                                 return (
                                     <div key={comment._id || `comment-${index}`} className={styles.comment}>
                                         <div className={styles.commentHeader}>

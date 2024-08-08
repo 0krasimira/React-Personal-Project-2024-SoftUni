@@ -1,6 +1,6 @@
 .card {
-    flex: 1 1 calc(33.333% - 20px); /* Adjust item size to take up approximately one-third of the container minus gap */
-    max-width: 300px; /* Optional: Limit the max width of each card */
+    flex: 1 1 calc(33.333% - 20px); 
+    max-width: 300px; 
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -8,8 +8,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    position: relative; /* For positioning the button */
-    min-width: 250px; /* Ensure a minimum width for each card */
+    position: relative; 
+    min-width: 250px; 
 }
 
 .image {
@@ -20,7 +20,7 @@
 
 .info {
     padding: 10px;
-    flex: 1; /* Ensure info section takes up available space */
+    flex: 1; 
 }
 
 .name {

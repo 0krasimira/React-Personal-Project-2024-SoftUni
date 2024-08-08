@@ -1,21 +1,20 @@
 body {
-  background-color: #f2e1e9; /* Light background color */
-  font-family: 'Josefin Sans', sans-serif; /* Consistent font family */
+  background-color: #f2e1e9; 
+  font-family: 'Josefin Sans', sans-serif; 
   margin: 0;
   padding: 0;
-  min-height: 100vh; /* Ensure body takes full height */
+  min-height: 100vh; 
   display: flex;
-  flex-direction: column; /* Stack footer at the bottom */
+  flex-direction: column; 
 }
 
-/* Main Content Container */
 .App {
-  flex: 1; /* Allow this container to grow and push footer down */
+  flex: 1; 
   display: flex;
-  flex-direction: column; /* Stack children vertically */
+  flex-direction: column; 
 }
 
-/* Footer Style */
+
 .footer {
   background-color: #333;
   color: #fff;

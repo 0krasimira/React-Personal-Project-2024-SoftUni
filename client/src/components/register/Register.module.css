@@ -1,29 +1,26 @@
-/* Overall Page */
 body {
-    background-color: #f2e1e9; /* Light background color */
-    font-family: Arial, sans-serif; /* Consistent font family */
+    background-color: #f2e1e9; 
+    font-family: Arial, sans-serif; 
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Ensure body takes full height */
+    min-height: 100vh; 
     display: flex;
-    flex-direction: column; /* For footer alignment */
+    flex-direction: column; 
 }
 
-/* Wrapper for the Form */
 .wrapper {
-    width: 50%; /* Set width to 50% of the viewport width */
-    max-width: 600px; /* Maximum width for larger screens */
-    margin: 50px auto; /* Center the form horizontally */
+    width: 50%; 
+    max-width: 600px;
+    margin: 50px auto; 
     padding: 40px;
-    background: #ffffff; /* White background for the form */
-    border: 1px solid #ddd; /* Border around the form */
+    background: #ffffff; 
+    border: 1px solid #ddd; 
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    box-sizing: border-box; /* Ensure padding does not affect width */
-    position: relative; /* Ensure it does not overlap with other content */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+    box-sizing: border-box; 
+    position: relative; 
 }
 
-/* Header Style */
 header {
     font-size: 24px;
     color: #a0496c;
@@ -31,42 +28,39 @@ header {
     margin-bottom: 20px;
 }
 
-/* Form Style */
 form {
     display: flex;
     flex-direction: column;
     padding-bottom: 1.5em;
 }
 
-/* Field Container */
 .field {
     margin-bottom: 20px;
-    position: relative; /* Positioning for icons and errors */
+    position: relative; 
 }
 
-/* Input Area */
 .inputArea {
-    position: relative; /* For positioning the icon inside the input */
-    display: flex; /* Use flexbox to align items */
-    align-items: center; /* Center items vertically */
+    position: relative; 
+    display: flex; 
+    align-items: center; 
 }
 
-/* Input Styles */
+
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-    width: 100%; /* Full width of the form */
-    padding: 10px 10px 10px 40px; /* Padding to accommodate the icon */
+    width: 100%; 
+    padding: 10px 10px 10px 40px; 
     font-size: 14px;
-    color: #333; /* Darker text color for better readability */
+    color: #333; 
     border: 1px solid #e3d6dd;
     border-radius: 5px;
-    box-sizing: border-box; /* Ensure padding does not affect width */
+    box-sizing: border-box;
     margin: 0;
     line-height: 1.5;
 }
 
-/* Submit Button */
+
 input[type="submit"] {
     background: #a0496c;
     color: #ffffff;
@@ -75,26 +69,26 @@ input[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%; /* Full width of the form */
+    width: 100%; 
 }
 
 input[type="submit"]:hover {
     background: #7c0032;
 }
 
-/* Icons */
+
 .icon {
     position: absolute;
-    left: 10px; /* Position the icon inside the input */
+    left: 10px; 
     color: #a0496c;
-    pointer-events: none; /* Ensure icon does not block input */
+    pointer-events: none;
 }
 
-/* Error Icons and Text */
+
 .errorTxt {
     color: #f63c85;
     font-size: 12px;
-    margin-top: 5px; /* Ensure spacing from input fields */
+    margin-top: 5px; 
 }
 
 /* Sign Up Text */
@@ -114,19 +108,18 @@ input[type="submit"]:hover {
     color: #7c0032;
 }
 
-/* Eye Icon for Password Visibility */
 .eyeIcon {
     position: absolute;
-    right: 10px; /* Position the eye icon inside the input */
-    cursor: pointer; /* Pointer cursor on hover */
-    color: #a0496c; /* Icon color */
-    font-size: 16px; /* Adjust size if necessary */
-    pointer-events: auto; /* Ensure icon is clickable */
+    right: 10px; 
+    cursor: pointer; 
+    color: #a0496c; 
+    font-size: 16px; 
+    pointer-events: auto; 
 }
 
-/* Adjusted for inputArea */
+
 .inputArea {
-    position: relative; /* For positioning the icon inside the input */
-    display: flex; /* Use flexbox to align items */
-    align-items: center; /* Center items vertically */
+    position: relative; 
+    display: flex; 
+    align-items: center; 
 }

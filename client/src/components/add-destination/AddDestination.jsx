@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './AddDestination.module.css'; // Ensure you have the correct path
+import styles from './AddDestination.module.css'; 
 
 export default function AddDestination() {
   const [form, setForm] = useState({
@@ -21,10 +21,9 @@ export default function AddDestination() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Clear previous errors
     setErrors({});
 
-    // Basic validation
+    
     const newErrors = {};
     if (!form.name) newErrors.name = 'Destination name is required.';
     if (!form.location) newErrors.location = 'Location is required.';
