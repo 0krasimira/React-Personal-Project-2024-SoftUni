@@ -33,7 +33,7 @@ const Profile = () => {
         };
 
         fetchUserAndDestinations();
-    }, [userId, fetchWithAuth]);
+    }, [userId]);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
