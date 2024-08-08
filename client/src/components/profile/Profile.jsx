@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useApi } from '../../utils/api';
 import { useAuth } from '../../contexts/authContext';
 import DestinationItem from '../destination-item/DestinationItem';
 import styles from './Profile.module.css';
 
 const Profile = () => {
     const { userId } = useAuth();
+    const { fetchWithAuth } = useApi(); // Use the custom hook
     const [user, setUser] = useState(null);
     const [addedDestinations, setAddedDestinations] = useState([]);
     const [likedDestinations, setLikedDestinations] = useState([]);
@@ -18,20 +20,8 @@ const Profile = () => {
     useEffect(() => {
         const fetchUserAndDestinations = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/auth/${userId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user data.');
-                }
-
-                const userData = await response.json();
-                console.log('Fetched user data:', userData); // Add this line for debugging
+                const userData = await fetchWithAuth(`http://localhost:3000/auth/${userId}`);
+                console.log('Fetched user data:', userData);
                 setUser(userData);
                 setAddedDestinations(userData.destinations || []);
                 setLikedDestinations(userData.likedDestinations || []);
@@ -43,7 +33,7 @@ const Profile = () => {
         };
 
         fetchUserAndDestinations();
-    }, [userId]);
+    }, [userId, fetchWithAuth]);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -53,36 +43,27 @@ const Profile = () => {
 
     const handleUpload = async () => {
         if (!newProfilePhoto) return;
-    
+
         const formData = new FormData();
         formData.append('profilePhoto', newProfilePhoto);
-    
+
         try {
-            const response = await fetch(`http://localhost:3000/auth/${userId}/upload-profile-photo`, {
+            const result = await fetchWithAuth(`http://localhost:3000/auth/${userId}/upload-profile-photo`, {
                 method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-                body: formData
+                body: formData,
             });
-    
-            if (!response.ok) {
-                throw new Error('Failed to upload profile photo.');
-            }
-    
-            const result = await response.json();
+
             console.log(user.profilePhoto);
 
             setUser(prevUser => ({ ...prevUser, profilePhoto: result.profilePhoto }));
             setNewProfilePhoto(null);
             setFileName('No file chosen');
-
         } catch (err) {
             console.error('Error uploading profile photo:', err);
             setUploadError('Error uploading profile photo.');
         }
     };
-    
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
     if (!user) return <div>No user data available</div>;
@@ -90,7 +71,6 @@ const Profile = () => {
     console.log('profile photo', user.profilePhoto);
 
     return (
-        
         <div className={styles.container}>
             <div className={styles.profileSection}>
                 <div className={styles.profileHeader}>

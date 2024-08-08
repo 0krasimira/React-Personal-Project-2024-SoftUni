@@ -31,17 +31,17 @@ function App() {
                             <ProtectedRoute>
                                 <Profile />
                             </ProtectedRoute>
-                            
-                            } />
+
+                        } />
                         <Route path="/about-us" element={<AboutUs />} />
                         <Route path="/contact-us" element={<ContactUs />} />
                         <Route path="/add-destination" element={
                             <ProtectedRoute>
                                 <AddDestination />
                             </ProtectedRoute>
-                            
-                            
-                            } />
+
+
+                        } />
                         <Route path="/all-destinations" element={<DestinationsList />} />
                         <Route path="/destinations/:destinationId" element={<DestinationDetails />} />
 
@@ -50,9 +50,18 @@ function App() {
                             <ProtectedRoute>
                                 <EditDestination />
                             </ProtectedRoute>
-                            
-                            
-                            } />
+
+
+                        } />
+
+                        <Route path="/destinations/:destinationId/delete" element={
+                            <ProtectedRoute>
+                                <DestinationDetails />
+                            </ProtectedRoute>
+
+
+                        } />
+
                         <Route path="/most-popular" element={<MostPopularDestinations />} />
                         <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
                     </Routes>
@@ -68,19 +77,5 @@ function NavBarWithAuth() {
     return <NavBar isLoggedIn={!!token} username={username} logout={logout} />;
 }
 
-function NotFoundRedirect() {
-    const { token } = useAuth();
-    const navigate = useNavigate();
-
-    React.useEffect(() => {
-        if (!token) {
-            navigate('/auth/login'); // Redirect to login if not authenticated
-        } else {
-            navigate('/404'); // You could redirect to a custom 404 page if you want
-        }
-    }, [token, navigate]);
-
-    return <div>Loading...</div>; // Or a placeholder component
-}
 
 export default App;
