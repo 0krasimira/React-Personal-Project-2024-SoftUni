@@ -113,7 +113,7 @@ const Profile = () => {
                         <h2>My Added Destinations</h2>
                         {addedDestinations.length === 0 ? (
                             <p>
-                                You have not added any destinations yet. 
+                                You have not added any destinations yet.&nbsp; 
                                 <a href="/add-destination" className={styles.addButton}>Add your first one here</a>
                             </p>
                         ) : (

@@ -19,7 +19,7 @@ export const useApi = () => {
             if (response.status === 401) {
                 // Token expired or unauthorized
                 logout();
-                navigate('/auth/login'); // Corrected path
+                navigate('/auth/login'); 
                 throw new Error('Session expired. Please log in again.');
             }
 

@@ -36,7 +36,7 @@ router.get('/all-destinations', async (req, res) => {
 
     try {
         // Create a regex pattern for case-insensitive search
-        const searchRegex = new RegExp(search, 'i');
+        const searchRegex = search ? new RegExp(search, 'i') : null;
 
         // Fetch destinations with pagination and search filter
         const allDestinations = await destinationManager.getAll(skip, limit, searchRegex);
