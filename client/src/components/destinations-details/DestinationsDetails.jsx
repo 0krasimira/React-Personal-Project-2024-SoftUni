@@ -24,7 +24,10 @@ export default function DestinationsDetails() {
             try {
                 const response = await fetch(`http://localhost:3000/destinations/${destinationId}`);
                 const data = await response.json();
-                if (!response.ok) throw new Error(data.error || 'Failed to fetch destination details');
+                if (!response.ok) {
+                    navigate('/not-found'); // Redirect to Not Found page
+                    return;
+                }
 
                 if (data && data.author) {
                     setDestination(data);
@@ -40,7 +43,7 @@ export default function DestinationsDetails() {
         };
 
         fetchDestination();
-    }, [destinationId, userId]);
+    }, [destinationId, userId, navigate]);
 
     const handleCommentChange = (e) => {
         setNewComment(e.target.value);
@@ -303,6 +306,3 @@ export default function DestinationsDetails() {
         </div>
     );
 }
-
-
-

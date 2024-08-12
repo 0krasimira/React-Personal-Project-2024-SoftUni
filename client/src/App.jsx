@@ -16,6 +16,8 @@ import EditDestination from './edit-destination/EditDestination';
 import Profile from './components/profile/Profile';
 import ProtectedRoute from './components/protection/Protection';
 import NotFound from './components/not-found/NotFound';
+import PublicRoute from './components/protection/PublicRoute';
+
 
 function App() {
     return (
@@ -25,13 +27,20 @@ function App() {
                 <div className="main-content">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/auth/register" element={<Register />} />
-                        <Route path="/auth/login" element={<Login />} />
+                        <Route path="/auth/register" element={
+                            <PublicRoute>
+                                <Register />
+                            </PublicRoute>
+                        } />
+                        <Route path="/auth/login" element={
+                            <PublicRoute>
+                                <Login />
+                            </PublicRoute>
+                        } />
                         <Route path="/auth/:userId" element={
                             <ProtectedRoute>
                                 <Profile />
                             </ProtectedRoute>
-
                         } />
                         <Route path="/about-us" element={<AboutUs />} />
                         <Route path="/contact-us" element={<ContactUs />} />
@@ -39,29 +48,19 @@ function App() {
                             <ProtectedRoute>
                                 <AddDestination />
                             </ProtectedRoute>
-
-
                         } />
                         <Route path="/all-destinations" element={<DestinationsList />} />
                         <Route path="/destinations/:destinationId" element={<DestinationDetails />} />
-
-
                         <Route path="/destinations/:destinationId/edit" element={
                             <ProtectedRoute>
                                 <EditDestination />
                             </ProtectedRoute>
-
-
                         } />
-
                         <Route path="/destinations/:destinationId/delete" element={
                             <ProtectedRoute>
                                 <DestinationDetails />
                             </ProtectedRoute>
-
-
                         } />
-
                         <Route path="/most-popular" element={<MostPopularDestinations />} />
                         <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
                     </Routes>
@@ -76,6 +75,5 @@ function NavBarWithAuth() {
     const { token, username, logout } = useAuth();
     return <NavBar isLoggedIn={!!token} username={username} logout={logout} />;
 }
-
 
 export default App;
